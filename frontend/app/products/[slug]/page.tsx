@@ -15,8 +15,13 @@ import { Suspense } from "react";
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const { items } = await getProducts({ limit: 50 });
-  return items.map((product) => ({ slug: product.slug }));
+  try {
+    const { items } = await getProducts({ limit: 50 });
+    return items.map((product) => ({ slug: product.slug }));
+  } catch {
+    console.warn("[generateStaticParams] API unreachable — falling back to on-demand rendering");
+    return [];
+  }
 }
 
 export async function generateMetadata({
