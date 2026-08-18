@@ -2,6 +2,7 @@
 
 import { useSyncExternalStore } from "react";
 import { selectCount, useCartStore } from "@/store/cart-store";
+import { useUiStore } from "@/store/ui-store";
 import { CartIcon } from "@/components/ui/icons";
 
 const emptySubscribe = () => () => {};
@@ -13,10 +14,12 @@ export function CartButton() {
     () => false,
   );
   const count = useCartStore(selectCount);
+  const toggleCart = useUiStore((state) => state.toggleCart);
 
   return (
     <button
       type="button"
+      onClick={toggleCart}
       aria-label={`Open cart${isClient && count > 0 ? `, ${count} items` : ""}`}
       className="relative flex h-11 w-11 items-center justify-center rounded-md text-ink-soft transition-colors hover:bg-surface hover:text-ink"
     >

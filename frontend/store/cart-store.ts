@@ -17,7 +17,7 @@ interface CartState {
   addItem: (item: Omit<CartItem, "qty">, qty?: number) => void;
   removeItem: (productId: string) => void;
   setQty: (productId: string, qty: number) => void;
-  clear: () => void;
+  clearCart: () => void;
 }
 
 const maxQty = 99;
@@ -56,7 +56,7 @@ export const useCartStore = create<CartState>()(
           };
         }),
 
-      clear: () => set({ items: {} }),
+      clearCart: () => set({ items: {} }),
     }),
     { name: "slekco-cart" },
   ),

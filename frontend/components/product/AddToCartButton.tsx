@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useCartStore } from "@/store/cart-store";
+import { useUiStore } from "@/store/ui-store";
 
 export function AddToCartButton({
   product,
@@ -13,11 +14,13 @@ export function AddToCartButton({
   disabled?: boolean;
 }) {
   const addItem = useCartStore((state) => state.addItem);
+  const openCart = useUiStore((state) => state.openCart);
   const [added, setAdded] = useState(false);
 
   const handleClick = () => {
     addItem(product, qty);
     setAdded(true);
+    openCart();
     window.setTimeout(() => setAdded(false), 1600);
   };
 
