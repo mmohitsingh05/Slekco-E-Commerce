@@ -378,7 +378,7 @@ const products: SeedProduct[] = [
     brand: 'Oak & Pine',
     category: 'beauty-care',
     price: 1099,
-    image: img('photo-1602874801006-10c1a172c1d4'),
+    image: img('photo-1603006905003-be475563bc59'),
     details: ['100% soy wax', '45h burn', 'Amber glass jar', 'Cotton wick'],
     rating: 4.8,
     reviewCount: 91,
