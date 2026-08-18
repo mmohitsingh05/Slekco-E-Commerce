@@ -88,6 +88,9 @@ export async function getProducts(query: ProductQuery = {}): Promise<ListResult<
   const params = new URLSearchParams();
   if (query.q) params.set("search", query.q);
   if (query.category) params.set("category", query.category);
+  if (query.brand) params.set("brand", query.brand);
+  if (query.minPrice !== undefined) params.set("minPrice", String(query.minPrice));
+  if (query.maxPrice !== undefined) params.set("maxPrice", String(query.maxPrice));
   if (query.sort) params.set("sort", query.sort);
   if (query.page) params.set("page", String(query.page));
   if (query.limit) params.set("limit", String(query.limit));

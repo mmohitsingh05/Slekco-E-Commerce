@@ -17,6 +17,7 @@ export interface ProductListItem {
   _id: string;
   name: string;
   slug: string;
+  brand: string;
   price: number;
   compareAtPrice: number | null;
   image: string;
@@ -45,11 +46,14 @@ export interface ListResult<T> {
   limit: number;
 }
 
-export type SortOption = "featured" | "price_asc" | "price_desc" | "newest";
+export type SortOption = "featured" | "price_asc" | "price_desc" | "newest" | "rating";
 
 export interface ProductQuery {
   q?: string;
   category?: string;
+  brand?: string;
+  minPrice?: number;
+  maxPrice?: number;
   sort?: SortOption;
   page?: number;
   limit?: number;

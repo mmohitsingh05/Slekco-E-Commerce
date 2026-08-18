@@ -18,6 +18,7 @@ export interface ProductListItem {
   _id: Types.ObjectId;
   name: string;
   slug: string;
+  brand: string;
   price: number;
   compareAtPrice: number | null;
   image: string;
@@ -58,6 +59,7 @@ const toListItem = (doc: PopulatedProduct): ProductListItem => ({
   _id: doc._id,
   name: doc.name,
   slug: doc.slug,
+  brand: doc.brand,
   price: doc.price,
   compareAtPrice: doc.compareAtPrice ?? null,
   image: doc.images[0] ?? '',

@@ -13,7 +13,14 @@ export const metadata: Metadata = {
   description: "Browse the full Slekco collection — search, filter and sort across all categories.",
 };
 
-const VALID_SORTS = new Set(["featured", "price_asc", "price_desc", "newest"]);
+const VALID_SORTS = new Set(["featured", "price_asc", "price_desc", "newest", "rating"]);
+
+const toNumber = (value: string | string[] | undefined): number | undefined => {
+  const raw = typeof value === "string" ? value : undefined;
+  if (raw === undefined || raw === "") return undefined;
+  const parsed = Number(raw);
+  return Number.isFinite(parsed) && parsed >= 0 ? parsed : undefined;
+};
 
 export default async function ProductsPage({
   searchParams,
@@ -26,20 +33,33 @@ export default async function ProductsPage({
 
   const q = first(params.q)?.trim() ?? undefined;
   const category = first(params.category) ?? undefined;
+  const brand = first(params.brand) ?? undefined;
+  const minPrice = toNumber(params.minPrice);
+  const maxPrice = toNumber(params.maxPrice);
   const rawSort = first(params.sort) ?? "featured";
-  const sort = VALID_SORTS.has(rawSort) ? (rawSort as "featured" | "price_asc" | "price_desc" | "newest") : "featured";
+  const sort = VALID_SORTS.has(rawSort)
+    ? (rawSort as "featured" | "price_asc" | "price_desc" | "newest" | "rating")
+    : "featured";
   const rawPage = Number(first(params.page) ?? "1");
   const page = Number.isFinite(rawPage) && rawPage >= 1 ? rawPage : 1;
 
-  const [categories, result] = await Promise.all([
+  const [categories, result, allProducts] = await Promise.all([
     getCategories(),
-    getProducts({ q, category, sort, page, limit: 12 }),
+    getProducts({ q, category, brand, minPrice, maxPrice, sort, page, limit: 12 }),
+    getProducts({ limit: 50 }),
   ]);
+
+  const brands = Array.from(new Set(allProducts.items.map((p) => p.brand))).sort((a, b) =>
+    a.localeCompare(b),
+  );
 
   const buildHref = (targetPage: number) => {
     const url = new URLSearchParams();
     if (q) url.set("q", q);
     if (category) url.set("category", category);
+    if (brand) url.set("brand", brand);
+    if (minPrice !== undefined) url.set("minPrice", String(minPrice));
+    if (maxPrice !== undefined) url.set("maxPrice", String(maxPrice));
     if (sort !== "featured") url.set("sort", sort);
     if (targetPage > 1) url.set("page", String(targetPage));
     const query = url.toString();
@@ -54,7 +74,7 @@ export default async function ProductsPage({
           <SearchBar />
           <SortSelect />
         </div>
-        <FilterBar categories={categories} />
+        <FilterBar categories={categories} brands={brands} />
       </header>
 
       {result.items.length === 0 ? (
