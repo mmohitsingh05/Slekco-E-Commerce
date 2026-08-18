@@ -37,6 +37,23 @@ type PopulatedProduct = Omit<IProduct, 'category'> & {
 
 const escapeRegExp = (value: string): string => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
+// MongoDB $text ignores single characters and common stopwords, so short or
+// stopword-only queries fall back to a case-insensitive regex across the same
+// fields the text index covers.
+const SEARCH_STOPWORDS = new Set([
+  'a', 'an', 'and', 'are', 'as', 'at', 'be', 'but', 'by', 'for', 'if',
+  'in', 'into', 'is', 'it', 'no', 'not', 'of', 'on', 'or', 'such', 'that',
+  'the', 'their', 'then', 'there', 'these', 'they', 'this', 'to', 'was',
+  'will', 'with',
+]);
+
+const usesRegexSearch = (search: string): boolean =>
+  search
+    .toLowerCase()
+    .split(/\s+/)
+    .filter(Boolean)
+    .some((token) => token.length < 3 || SEARCH_STOPWORDS.has(token));
+
 const toListItem = (doc: PopulatedProduct): ProductListItem => ({
   _id: doc._id,
   name: doc.name,
@@ -58,7 +75,17 @@ export async function listProducts(params: ProductListParams) {
   const filter: QueryFilter<IProduct> = {};
 
   if (params.search) {
-    filter.$text = { $search: params.search };
+    if (usesRegexSearch(params.search)) {
+      const pattern = escapeRegExp(params.search.trim());
+      filter.$or = [
+        { name: { $regex: pattern, $options: 'i' } },
+        { brand: { $regex: pattern, $options: 'i' } },
+        { description: { $regex: pattern, $options: 'i' } },
+        { tags: { $regex: pattern, $options: 'i' } },
+      ];
+    } else {
+      filter.$text = { $search: params.search };
+    }
   }
 
   if (params.brand) {
