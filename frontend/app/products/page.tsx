@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { Suspense } from "react";
 import { getCategories, getProducts } from "@/lib/api";
 import { Container } from "@/components/ui/Container";
 import { EmptyState } from "@/components/shop/EmptyState";
@@ -74,16 +76,70 @@ export default async function ProductsPage({
     return query ? `/products?${query}` : "/products";
   };
 
+  const buildCategoryHref = (slug: string) => {
+    const url = new URLSearchParams();
+    if (q) url.set("q", q);
+    if (slug) url.set("category", slug);
+    if (brand) url.set("brand", brand);
+    if (minPrice !== undefined) url.set("minPrice", String(minPrice));
+    if (maxPrice !== undefined) url.set("maxPrice", String(maxPrice));
+    if (sort !== "featured") url.set("sort", sort);
+    const query = url.toString();
+    return query ? `/products?${query}` : "/products";
+  };
+
+  const categoryChip =
+    "shrink-0 rounded-full border px-4 py-2 text-body-sm transition-colors";
+
   return (
     <Container className="py-8 md:py-12">
       <header className="mb-8 flex flex-col gap-6">
         <h1 className="text-h1 font-semibold tracking-tight text-ink">Shop</h1>
-        <SearchBar />
+        <Suspense fallback={<div className="h-11 w-full rounded-md border border-border bg-surface" />}>
+          <SearchBar />
+        </Suspense>
+        <nav
+          aria-label="Browse by category"
+          className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1"
+        >
+          <Link
+            href={buildCategoryHref("")}
+            className={`${categoryChip} ${
+              category === undefined
+                ? "border-accent bg-accent text-surface"
+                : "border-border bg-surface text-ink-soft hover:border-ink"
+            }`}
+          >
+            All
+          </Link>
+          {categories.map((c) => (
+            <Link
+              key={c._id}
+              href={buildCategoryHref(c.slug)}
+              className={`${categoryChip} ${
+                category === c.slug
+                  ? "border-accent bg-accent text-surface"
+                  : "border-border bg-surface text-ink-soft hover:border-ink"
+              }`}
+            >
+              {c.name}
+            </Link>
+          ))}
+        </nav>
       </header>
 
       <div className="grid gap-8 lg:grid-cols-[16rem_1fr]">
         <aside className="lg:sticky lg:top-6 lg:self-start">
-          <FilterBar categories={categories} brands={brands} brandCounts={brandCounts} />
+          <Suspense fallback={<div className="h-64 rounded-xl border border-border bg-surface" />}>
+            <FilterBar
+              brands={brands}
+              brandCounts={brandCounts}
+              q={q ?? ""}
+              brand={brand ?? ""}
+              minPrice={minPrice !== undefined ? String(minPrice) : ""}
+              maxPrice={maxPrice !== undefined ? String(maxPrice) : ""}
+            />
+          </Suspense>
         </aside>
 
         <div>
@@ -92,7 +148,9 @@ export default async function ProductsPage({
               {result.total} {result.total === 1 ? "product" : "products"}
               {q && <> for &ldquo;{q}&rdquo;</>}
             </p>
-            <SortSelect />
+            <Suspense fallback={<div className="h-11 w-44 rounded-md border border-border bg-surface" />}>
+              <SortSelect />
+            </Suspense>
           </div>
 
           {result.items.length === 0 ? (
