@@ -104,10 +104,26 @@ export async function listProducts(params: ProductListParams) {
   };
 }
 
+export interface ProductDetail extends ProductListItem {
+  description: string;
+  details: string[];
+  tags: string[];
+  updatedAt: Date;
+}
+
+const toDetailItem = (doc: PopulatedProduct): ProductDetail => ({
+  ...toListItem(doc),
+  description: doc.description,
+  details: doc.details,
+  tags: doc.tags,
+  updatedAt: doc.updatedAt,
+});
+
 export async function getProductBySlug(slug: string) {
-  return Product.findOne({ slug })
+  const doc = await Product.findOne({ slug })
     .populate<{ category: { name: string; slug: string } }>('category', 'name slug')
     .lean();
+  return doc ? toDetailItem(doc) : null;
 }
 
 export async function getRelatedProducts(slug: string, limit = 4) {

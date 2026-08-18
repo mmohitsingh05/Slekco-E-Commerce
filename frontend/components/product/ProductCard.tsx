@@ -15,15 +15,19 @@ export function ProductCard({ product }: { product: ProductListItem }) {
       aria-label={product.name}
     >
       <div className="relative aspect-square overflow-hidden rounded-lg bg-surface shadow-card transition-shadow duration-base ease-out group-hover:shadow-card-hover">
-        <Image
-          src={product.image}
-          alt={product.name}
-          fill
-          sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
-          placeholder="blur"
-          blurDataURL="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZTZlNGRlIi8+PC9zdmc+"
-          className="object-cover transition-transform duration-slow ease-out group-hover:scale-[1.03]"
-        />
+        {product.image ? (
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
+            placeholder="blur"
+            blurDataURL="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZTZlNGRlIi8+PC9zdmc+"
+            className="object-cover transition-transform duration-slow ease-out group-hover:scale-[1.03]"
+          />
+        ) : (
+          <div className="h-full w-full bg-surface" aria-hidden="true" />
+        )}
         {outOfStock ? (
           <span className="absolute left-3 top-3">
             <Badge tone="danger">Out of stock</Badge>

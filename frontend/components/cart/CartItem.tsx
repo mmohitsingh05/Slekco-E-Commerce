@@ -19,7 +19,11 @@ export function CartItem({ productId }: { productId: string }) {
         href={`/products/${item.slug}`}
         className="relative block h-20 w-20 shrink-0 overflow-hidden rounded-md bg-surface"
       >
-        <Image src={item.image} alt={item.name} fill sizes="80px" className="object-cover" />
+        {item.image ? (
+          <Image src={item.image} alt={item.name} fill sizes="80px" className="object-cover" />
+        ) : (
+          <div className="h-full w-full bg-surface" aria-hidden="true" />
+        )}
       </Link>
 
       <div className="flex min-w-0 flex-1 flex-col gap-2">
