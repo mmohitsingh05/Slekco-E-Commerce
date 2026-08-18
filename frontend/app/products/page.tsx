@@ -1,0 +1,74 @@
+import type { Metadata } from "next";
+import { getCategories, getProducts } from "@/lib/api";
+import { Container } from "@/components/ui/Container";
+import { EmptyState } from "@/components/shop/EmptyState";
+import { FilterBar } from "@/components/shop/FilterBar";
+import { Pagination } from "@/components/shop/Pagination";
+import { ProductGrid } from "@/components/product/ProductGrid";
+import { SearchBar } from "@/components/shop/SearchBar";
+import { SortSelect } from "@/components/shop/SortSelect";
+
+export const metadata: Metadata = {
+  title: "Shop",
+  description: "Browse the full Slekco collection — search, filter and sort across all categories.",
+};
+
+const VALID_SORTS = new Set(["featured", "price_asc", "price_desc", "newest"]);
+
+export default async function ProductsPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const params = await searchParams;
+  const first = (value: string | string[] | undefined) =>
+    typeof value === "string" ? value : undefined;
+
+  const q = first(params.q)?.trim() ?? undefined;
+  const category = first(params.category) ?? undefined;
+  const rawSort = first(params.sort) ?? "featured";
+  const sort = VALID_SORTS.has(rawSort) ? (rawSort as "featured" | "price_asc" | "price_desc" | "newest") : "featured";
+  const rawPage = Number(first(params.page) ?? "1");
+  const page = Number.isFinite(rawPage) && rawPage >= 1 ? rawPage : 1;
+
+  const [categories, result] = await Promise.all([
+    getCategories(),
+    getProducts({ q, category, sort, page, limit: 12 }),
+  ]);
+
+  const buildHref = (targetPage: number) => {
+    const url = new URLSearchParams();
+    if (q) url.set("q", q);
+    if (category) url.set("category", category);
+    if (sort !== "featured") url.set("sort", sort);
+    if (targetPage > 1) url.set("page", String(targetPage));
+    const query = url.toString();
+    return query ? `/products?${query}` : "/products";
+  };
+
+  return (
+    <Container className="py-8 md:py-12">
+      <header className="mb-8 flex flex-col gap-6">
+        <h1 className="text-h1 font-semibold tracking-tight text-ink">Shop</h1>
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <SearchBar />
+          <SortSelect />
+        </div>
+        <FilterBar categories={categories} />
+      </header>
+
+      {result.items.length === 0 ? (
+        <EmptyState />
+      ) : (
+        <>
+          <p className="mb-4 text-body-sm text-ink-faint" role="status">
+            {result.total} {result.total === 1 ? "product" : "products"}
+            {q && <> for &ldquo;{q}&rdquo;</>}
+          </p>
+          <ProductGrid products={result.items} />
+          <Pagination page={result.page} pages={result.pages} buildHref={buildHref} />
+        </>
+      )}
+    </Container>
+  );
+}
