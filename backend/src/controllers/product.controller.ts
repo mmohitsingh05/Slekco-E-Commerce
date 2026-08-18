@@ -9,7 +9,7 @@ import {
 } from '../services/product.service.js';
 
 export const listProductsController = asyncHandler(async (req: Request, res: Response) => {
-  const query = req.query as Record<string, unknown>;
+  const query = res.locals.validatedQuery as Record<string, unknown>;
   const result = await listProducts({
     page: Number(query.page),
     limit: Number(query.limit),

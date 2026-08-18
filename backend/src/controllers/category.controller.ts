@@ -14,7 +14,7 @@ export const categoryProductsController = asyncHandler(async (req: Request<{ slu
   const category = await getCategoryBySlug(req.params.slug);
   if (!category) throw new ApiError(404, 'Category not found');
 
-  const query = req.query as Record<string, unknown>;
+  const query = res.locals.validatedQuery as Record<string, unknown>;
   const result = await listProducts({
     page: Number(query.page),
     limit: Number(query.limit),

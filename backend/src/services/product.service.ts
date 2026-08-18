@@ -1,5 +1,6 @@
 import { Category } from '../models/Category.js';
 import { Product, type IProduct } from '../models/Product.js';
+import { ApiError } from '../utils/ApiError.js';
 import type { QueryFilter, Types } from 'mongoose';
 
 export interface ProductListParams {
@@ -111,7 +112,7 @@ export async function getProductBySlug(slug: string) {
 
 export async function getRelatedProducts(slug: string, limit = 4) {
   const product = await Product.findOne({ slug }).select('category').lean();
-  if (!product) return [];
+  if (!product) throw new ApiError(404, 'Product not found');
   const docs = await Product.find({ category: product.category, slug: { $ne: slug } })
     .populate<{ category: { name: string; slug: string } }>('category', 'name slug')
     .sort({ isFeatured: -1, createdAt: -1 })
