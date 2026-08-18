@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useQueryParams } from "@/hooks/use-query-params";
-import { CloseIcon } from "@/components/ui/icons";
+import { ChevronDownIcon, CloseIcon } from "@/components/ui/icons";
 import type { Category } from "@/lib/types";
 
 export function FilterBar({
@@ -13,6 +13,7 @@ export function FilterBar({
   brands: string[];
 }) {
   const { searchParams, setParams } = useQueryParams();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const activeCategory = searchParams.get("category") ?? "";
   const activeBrand = searchParams.get("brand") ?? "";
@@ -55,6 +56,23 @@ export function FilterBar({
 
   return (
     <div className="flex flex-col gap-4">
+      <button
+        type="button"
+        onClick={() => setMobileOpen((open) => !open)}
+        aria-expanded={mobileOpen}
+        className="flex h-11 items-center justify-between rounded-md border border-border bg-surface px-4 text-body-sm font-medium text-ink transition-colors hover:border-ink lg:hidden"
+      >
+        <span>
+          Filters{activeChips.length > 0 ? ` (${activeChips.length})` : ""}
+        </span>
+        <ChevronDownIcon
+          className={`h-4 w-4 text-ink-faint transition-transform ${mobileOpen ? "rotate-180" : ""}`}
+        />
+      </button>
+
+      <div
+        className={`flex-col gap-4 ${mobileOpen ? "flex" : "hidden"} lg:flex`}
+      >
       <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Filter by category">
         <button
           type="button"
@@ -177,6 +195,7 @@ export function FilterBar({
           </button>
         </div>
       )}
+      </div>
     </div>
   );
 }

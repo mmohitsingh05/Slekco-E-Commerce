@@ -171,26 +171,6 @@ export default async function ProductPage({
         </div>
       </div>
 
-      {category && (
-        <div className="mt-16 border-t border-border pt-12">
-          <Suspense
-            fallback={
-              <div className="grid grid-cols-2 gap-4 md:grid-cols-4" aria-busy="true">
-                {Array.from({ length: 4 }).map((_, index) => (
-                  <div key={index} className="flex flex-col gap-3">
-                    <Skeleton className="aspect-square rounded-lg" />
-                    <Skeleton className="h-4 w-3/4 rounded" />
-                    <Skeleton className="h-4 w-1/2 rounded" />
-                  </div>
-                ))}
-              </div>
-            }
-          >
-            <RelatedRow slug={product.slug} categoryName={category.name} />
-          </Suspense>
-        </div>
-      )}
-
       <section aria-labelledby="faq-heading" className="mt-16 border-t border-border pt-12">
         <h2 id="faq-heading" className="text-h3 font-semibold text-ink">
           Good to know
@@ -215,6 +195,26 @@ export default async function ProductPage({
           ))}
         </div>
       </section>
+
+      {category && (
+        <div className="mt-16 border-t border-border pt-12">
+          <Suspense
+            fallback={
+              <div className="grid grid-cols-2 gap-4 md:grid-cols-4" aria-busy="true">
+                {Array.from({ length: 4 }).map((_, index) => (
+                  <div key={index} className="flex flex-col gap-3">
+                    <Skeleton className="aspect-square rounded-lg" />
+                    <Skeleton className="h-4 w-3/4 rounded" />
+                    <Skeleton className="h-4 w-1/2 rounded" />
+                  </div>
+                ))}
+              </div>
+            }
+          >
+            <RelatedRow slug={product.slug} categoryName={category.name} />
+          </Suspense>
+        </div>
+      )}
     </Container>
   );
 }

@@ -70,25 +70,33 @@ export default async function ProductsPage({
     <Container className="py-8 md:py-12">
       <header className="mb-8 flex flex-col gap-6">
         <h1 className="text-h1 font-semibold tracking-tight text-ink">Shop</h1>
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <SearchBar />
-          <SortSelect />
-        </div>
-        <FilterBar categories={categories} brands={brands} />
+        <SearchBar />
       </header>
 
-      {result.items.length === 0 ? (
-        <EmptyState />
-      ) : (
-        <>
-          <p className="mb-4 text-body-sm text-ink-faint" role="status">
-            {result.total} {result.total === 1 ? "product" : "products"}
-            {q && <> for &ldquo;{q}&rdquo;</>}
-          </p>
-          <ProductGrid products={result.items} />
-          <Pagination page={result.page} pages={result.pages} buildHref={buildHref} />
-        </>
-      )}
+      <div className="grid gap-8 lg:grid-cols-[16rem_1fr]">
+        <aside className="lg:sticky lg:top-6 lg:self-start">
+          <FilterBar categories={categories} brands={brands} />
+        </aside>
+
+        <div>
+          <div className="mb-6 flex items-center justify-between gap-4">
+            <p className="text-body-sm text-ink-faint" role="status">
+              {result.total} {result.total === 1 ? "product" : "products"}
+              {q && <> for &ldquo;{q}&rdquo;</>}
+            </p>
+            <SortSelect />
+          </div>
+
+          {result.items.length === 0 ? (
+            <EmptyState />
+          ) : (
+            <>
+              <ProductGrid products={result.items} />
+              <Pagination page={result.page} pages={result.pages} buildHref={buildHref} />
+            </>
+          )}
+        </div>
+      </div>
     </Container>
   );
 }
