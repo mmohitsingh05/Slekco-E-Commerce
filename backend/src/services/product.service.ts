@@ -1,0 +1,121 @@
+import { Category } from '../models/Category.js';
+import { Product, type IProduct } from '../models/Product.js';
+import type { QueryFilter, Types } from 'mongoose';
+
+export interface ProductListParams {
+  page: number;
+  limit: number;
+  search?: string;
+  category?: string;
+  brand?: string;
+  minPrice?: number;
+  maxPrice?: number;
+  sort: 'featured' | 'newest' | 'price_asc' | 'price_desc' | 'rating';
+}
+
+export interface ProductListItem {
+  _id: Types.ObjectId;
+  name: string;
+  slug: string;
+  price: number;
+  compareAtPrice: number | null;
+  image: string;
+  images: string[];
+  category: { name: string; slug: string };
+  rating: number;
+  ratingCount: number;
+  stock: number;
+  isFeatured: boolean;
+  createdAt: Date;
+}
+
+type PopulatedProduct = Omit<IProduct, 'category'> & {
+  _id: Types.ObjectId;
+  category: { name: string; slug: string };
+};
+
+const escapeRegExp = (value: string): string => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+const toListItem = (doc: PopulatedProduct): ProductListItem => ({
+  _id: doc._id,
+  name: doc.name,
+  slug: doc.slug,
+  price: doc.price,
+  compareAtPrice: doc.compareAtPrice ?? null,
+  image: doc.images[0] ?? '',
+  images: doc.images,
+  category: { name: doc.category.name, slug: doc.category.slug },
+  rating: doc.rating ?? 0,
+  ratingCount: doc.reviewCount ?? 0,
+  stock: doc.stock,
+  isFeatured: doc.isFeatured,
+  createdAt: doc.createdAt,
+});
+
+export async function listProducts(params: ProductListParams) {
+  const { page, limit } = params;
+  const filter: QueryFilter<IProduct> = {};
+
+  if (params.search) {
+    filter.$text = { $search: params.search };
+  }
+
+  if (params.brand) {
+    filter.brand = { $regex: `^${escapeRegExp(params.brand)}$`, $options: 'i' };
+  }
+
+  if (params.minPrice !== undefined || params.maxPrice !== undefined) {
+    filter.price = {};
+    if (params.minPrice !== undefined) filter.price.$gte = params.minPrice;
+    if (params.maxPrice !== undefined) filter.price.$lte = params.maxPrice;
+  }
+
+  if (params.category) {
+    const category = await Category.findOne({ slug: params.category }).select('_id').lean();
+    if (!category) {
+      return { products: [], pagination: { page, limit, total: 0, pages: 0 } };
+    }
+    filter.category = category._id;
+  }
+
+  const sortMap: Record<ProductListParams['sort'], Record<string, 1 | -1>> = {
+    featured: { isFeatured: -1, createdAt: -1 },
+    newest: { createdAt: -1 },
+    price_asc: { price: 1 },
+    price_desc: { price: -1 },
+    rating: { rating: -1 },
+  };
+
+  const [docs, total] = await Promise.all([
+    Product.find(filter)
+      .populate<{ category: { name: string; slug: string } }>('category', 'name slug')
+      .sort(sortMap[params.sort])
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .lean(),
+    Product.countDocuments(filter),
+  ]);
+
+  const products = docs.map(toListItem);
+  return {
+    products,
+    pagination: { page, limit, total, pages: Math.ceil(total / limit) },
+  };
+}
+
+export async function getProductBySlug(slug: string) {
+  return Product.findOne({ slug })
+    .populate<{ category: { name: string; slug: string } }>('category', 'name slug')
+    .lean();
+}
+
+export async function getRelatedProducts(slug: string, limit = 4) {
+  const product = await Product.findOne({ slug }).select('category').lean();
+  if (!product) return [];
+  const docs = await Product.find({ category: product.category, slug: { $ne: slug } })
+    .populate<{ category: { name: string; slug: string } }>('category', 'name slug')
+    .sort({ isFeatured: -1, createdAt: -1 })
+    .limit(limit)
+    .lean();
+  return docs.map(toListItem);
+}

@@ -12,5 +12,9 @@ export function errorMiddleware(
 
   if (status >= 500) console.error(err);
 
-  res.status(status).json({ success: false, message });
+  res.status(status).json({
+    success: false,
+    message,
+    ...(err instanceof ApiError && err.details ? { errors: err.details } : {}),
+  });
 }
