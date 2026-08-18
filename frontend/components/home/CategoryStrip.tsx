@@ -8,7 +8,7 @@ export async function CategoryStrip() {
   const categories = await getCategories();
 
   return (
-    <section aria-labelledby="categories-heading">
+    <section id="categories" aria-labelledby="categories-heading">
       <Container className="py-12 md:py-16">
         <div className="mb-6 flex items-end justify-between">
           <h2 id="categories-heading" className="text-h2 font-semibold tracking-tight text-ink">
