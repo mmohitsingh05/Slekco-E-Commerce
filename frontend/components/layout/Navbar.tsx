@@ -3,9 +3,10 @@
 import Link from "next/link";
 import { useState } from "react";
 import { site } from "@/lib/site";
+import { CartButton } from "@/components/layout/CartButton";
 import { Container } from "@/components/ui/Container";
 import { MobileMenu } from "@/components/layout/MobileMenu";
-import { CartIcon, MenuIcon, SearchIcon } from "@/components/ui/icons";
+import { MenuIcon, SearchIcon } from "@/components/ui/icons";
 
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -41,13 +42,7 @@ export function Navbar() {
           >
             <SearchIcon />
           </Link>
-          <button
-            type="button"
-            aria-label="Open cart"
-            className="flex h-11 w-11 items-center justify-center rounded-md text-ink-soft transition-colors hover:bg-surface hover:text-ink"
-          >
-            <CartIcon />
-          </button>
+          <CartButton />
           <button
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
