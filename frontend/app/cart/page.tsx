@@ -10,8 +10,9 @@ import { selectCount, useCartStore } from "@/store/cart-store";
 
 export default function CartPage() {
   const count = useCartStore(selectCount);
-  const itemIds = useCartStore((state) => Object.keys(state.items));
+  const items = useCartStore((state) => state.items);
   const clearCart = useCartStore((state) => state.clearCart);
+  const itemIds = Object.keys(items);
 
   return (
     <Container className="py-8 md:py-12">

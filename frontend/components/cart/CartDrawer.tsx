@@ -13,8 +13,9 @@ export function CartDrawer() {
   const isOpen = useUiStore((state) => state.isCartOpen);
   const closeCart = useUiStore((state) => state.closeCart);
   const count = useCartStore(selectCount);
-  const itemIds = useCartStore((state) => Object.keys(state.items));
+  const items = useCartStore((state) => state.items);
   const panelRef = useRef<HTMLDivElement>(null);
+  const itemIds = Object.keys(items);
 
   useEffect(() => {
     if (!isOpen) return;
