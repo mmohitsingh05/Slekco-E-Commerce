@@ -28,13 +28,6 @@ export function MobileMenu({
             {item.label}
           </Link>
         ))}
-        <Link
-          href="/products"
-          onClick={onClose}
-          className="rounded-md px-3 py-3 text-body font-medium text-accent"
-        >
-          Search
-        </Link>
       </nav>
     </div>
   );
