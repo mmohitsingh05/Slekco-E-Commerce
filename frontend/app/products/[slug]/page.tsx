@@ -4,9 +4,11 @@ import { ProductGallery } from "@/components/product/ProductGallery";
 import { ProductPurchasePanel } from "@/components/product/ProductPurchasePanel";
 import { PriceTag } from "@/components/product/PriceTag";
 import { RatingStars } from "@/components/product/RatingStars";
+import { TrustStrip } from "@/components/product/TrustStrip";
 import { Badge } from "@/components/ui/Badge";
 import { RelatedRow } from "@/components/product/RelatedRow";
 import { Skeleton } from "@/components/ui/Skeleton";
+import { content } from "@/lib/content";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -54,10 +56,39 @@ export default async function ProductPage({
   if (!product) notFound();
 
   const outOfStock = product.stock <= 0;
+  const lowStock = product.stock > 0 && product.stock <= 10;
   const category = categories.find((c) => c.slug === product.category.slug);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    image: product.images,
+    description: product.description,
+    sku: product.slug,
+    brand: { "@type": "Brand", name: product.brand },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: product.rating,
+      reviewCount: product.ratingCount,
+    },
+    offers: {
+      "@type": "Offer",
+      url: `/products/${product.slug}`,
+      priceCurrency: "INR",
+      price: product.price,
+      availability: outOfStock
+        ? "https://schema.org/OutOfStock"
+        : "https://schema.org/InStock",
+    },
+  };
 
   return (
     <Container className="py-8 md:py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <nav aria-label="Breadcrumb" className="mb-6">
         <ol className="flex flex-wrap items-center gap-1 text-body-sm text-ink-faint">
           <li>
@@ -86,7 +117,9 @@ export default async function ProductPage({
 
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
-            <p className="text-label uppercase text-ink-faint">{product.category.name}</p>
+            <p className="text-label uppercase text-ink-faint">
+              {product.brand} · {product.category.name}
+            </p>
             <h1 className="text-h1 font-semibold tracking-tight text-ink">{product.name}</h1>
             <RatingStars rating={product.rating} ratingCount={product.ratingCount} />
           </div>
@@ -97,6 +130,10 @@ export default async function ProductPage({
             <span>
               <Badge tone="danger">Out of stock</Badge>
             </span>
+          ) : lowStock ? (
+            <p className="text-body-sm font-medium text-warning">
+              Only {product.stock} left in stock — order soon
+            </p>
           ) : (
             <p className="text-body-sm text-success">
               In stock — ships within 24 hours
@@ -113,6 +150,8 @@ export default async function ProductPage({
             }}
             outOfStock={outOfStock}
           />
+
+          <TrustStrip />
 
           <p className="text-body text-ink-soft">{product.description}</p>
 
@@ -151,6 +190,31 @@ export default async function ProductPage({
           </Suspense>
         </div>
       )}
+
+      <section aria-labelledby="faq-heading" className="mt-16 border-t border-border pt-12">
+        <h2 id="faq-heading" className="text-h3 font-semibold text-ink">
+          Good to know
+        </h2>
+        <div className="mt-6 flex max-w-2xl flex-col gap-3">
+          {content.faq.map((item) => (
+            <details
+              key={item.question}
+              className="group rounded-md border border-border bg-surface open:border-ink"
+            >
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-4 py-3 text-body-sm font-medium text-ink [&::-webkit-details-marker]:hidden">
+                {item.question}
+                <span
+                  aria-hidden="true"
+                  className="text-ink-faint transition-transform group-open:rotate-45"
+                >
+                  +
+                </span>
+              </summary>
+              <p className="px-4 pb-4 text-body-sm text-ink-soft">{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
     </Container>
   );
 }
