@@ -53,6 +53,14 @@ export default async function ProductsPage({
     a.localeCompare(b),
   );
 
+  const brandCounts = allProducts.items.reduce(
+    (acc, p) => {
+      acc[p.brand] = (acc[p.brand] ?? 0) + 1;
+      return acc;
+    },
+    {} as Record<string, number>,
+  );
+
   const buildHref = (targetPage: number) => {
     const url = new URLSearchParams();
     if (q) url.set("q", q);
@@ -75,7 +83,7 @@ export default async function ProductsPage({
 
       <div className="grid gap-8 lg:grid-cols-[16rem_1fr]">
         <aside className="lg:sticky lg:top-6 lg:self-start">
-          <FilterBar categories={categories} brands={brands} />
+          <FilterBar categories={categories} brands={brands} brandCounts={brandCounts} />
         </aside>
 
         <div>
