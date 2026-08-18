@@ -1,21 +1,30 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { EmptyCart } from "@/components/cart/EmptyCart";
 import { CartItem } from "@/components/cart/CartItem";
 import { CartSummary } from "@/components/cart/CartSummary";
+import { CrossSell } from "@/components/cart/CrossSell";
+import { FreeShippingProgress } from "@/components/cart/FreeShippingProgress";
 import { CloseIcon } from "@/components/ui/icons";
-import { selectCount, useCartStore } from "@/store/cart-store";
+import { selectCount, selectSubtotal, useCartStore } from "@/store/cart-store";
 import { useUiStore } from "@/store/ui-store";
+import type { ProductListItem } from "@/lib/types";
 
-export function CartDrawer() {
+export function CartDrawer({ crossSellPool = [] }: { crossSellPool?: ProductListItem[] }) {
   const isOpen = useUiStore((state) => state.isCartOpen);
   const closeCart = useUiStore((state) => state.closeCart);
   const count = useCartStore(selectCount);
+  const subtotal = useCartStore(selectSubtotal);
   const items = useCartStore((state) => state.items);
   const panelRef = useRef<HTMLDivElement>(null);
   const itemIds = Object.keys(items);
+
+  const crossSell = useMemo(() => {
+    const inCart = new Set(Object.keys(items));
+    return crossSellPool.filter((product) => !inCart.has(product._id)).slice(0, 3);
+  }, [crossSellPool, items]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -77,11 +86,13 @@ export function CartDrawer() {
               </div>
             ) : (
               <>
+                <FreeShippingProgress subtotal={subtotal} />
                 <ul className="flex-1 space-y-4 overflow-y-auto px-6 py-4">
                   {itemIds.map((productId) => (
                     <CartItem key={productId} productId={productId} />
                   ))}
                 </ul>
+                <CrossSell products={crossSell} />
                 <footer className="px-6 py-4">
                   <CartSummary />
                 </footer>

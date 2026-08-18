@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { CartDrawer } from "@/components/cart/CartDrawer";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
+import { getProducts } from "@/lib/api";
 import "./globals.css";
 
 const inter = Inter({
@@ -28,7 +30,15 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  let crossSellPool: Awaited<ReturnType<typeof getProducts>>["items"] = [];
+  try {
+    const result = await getProducts({ sort: "rating", limit: 8 });
+    crossSellPool = result.items;
+  } catch {
+    crossSellPool = [];
+  }
+
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col" suppressHydrationWarning>
@@ -38,12 +48,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
+        <AnnouncementBar />
         <Navbar />
         <main id="main" className="flex-1">
           {children}
         </main>
         <Footer />
-        <CartDrawer />
+        <CartDrawer crossSellPool={crossSellPool} />
       </body>
     </html>
   );
