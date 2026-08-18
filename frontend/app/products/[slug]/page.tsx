@@ -15,7 +15,7 @@ import { Suspense } from "react";
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const { items } = await getProducts({ limit: 100 });
+  const { items } = await getProducts({ limit: 50 });
   return items.map((product) => ({ slug: product.slug }));
 }
 
