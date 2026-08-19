@@ -106,7 +106,7 @@ export default async function ProductsPage({
             href={buildCategoryHref("")}
             className={`${categoryChip} ${
               category === undefined
-                ? "border-accent bg-accent text-surface"
+                ? "border-accent bg-accent text-accent-foreground"
                 : "border-border bg-surface text-ink-soft hover:border-ink"
             }`}
           >
@@ -118,7 +118,7 @@ export default async function ProductsPage({
               href={buildCategoryHref(c.slug)}
               className={`${categoryChip} ${
                 category === c.slug
-                  ? "border-accent bg-accent text-surface"
+                  ? "border-accent bg-accent text-accent-foreground"
                   : "border-border bg-surface text-ink-soft hover:border-ink"
               }`}
             >

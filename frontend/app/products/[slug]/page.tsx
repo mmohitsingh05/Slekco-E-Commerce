@@ -161,7 +161,7 @@ export default async function ProductPage({
               <ul className="mt-3 flex flex-col gap-2">
                 {product.details.map((detail) => (
                   <li key={detail} className="flex items-start gap-2 text-body-sm text-ink-soft">
-                    <span aria-hidden="true" className="mt-2 h-1 w-1 rounded-full bg-accent" />
+                    <span aria-hidden="true" className="mt-2 h-1 w-1 rounded-full bg-brand-dark" />
                     {detail}
                   </li>
                 ))}

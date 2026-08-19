@@ -10,7 +10,7 @@ export function EmptyState() {
       </p>
       <Link
         href="/products"
-        className="mt-2 inline-flex items-center rounded-md bg-accent px-5 py-3 text-body-sm font-medium text-surface transition-colors hover:bg-accent-hover"
+        className="mt-2 inline-flex items-center rounded-md bg-accent px-5 py-3 text-body-sm font-medium text-accent-foreground transition-colors hover:bg-accent-hover"
       >
         Clear filters
       </Link>

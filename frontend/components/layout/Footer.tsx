@@ -2,52 +2,97 @@ import Link from "next/link";
 import { site } from "@/lib/site";
 import { content } from "@/lib/content";
 import { Container } from "@/components/ui/Container";
-import { NewsletterForm } from "@/components/layout/NewsletterForm";
+import { InstagramIcon, TiktokIcon, YoutubeIcon, XIcon } from "@/components/ui/icons";
 
-const footerLinks = [
-  { label: "Shop all", href: "/products" },
-  { label: "Best sellers", href: "/products?sort=rating" },
-  { label: "New arrivals", href: "/products?sort=newest" },
-  { label: "Categories", href: "/#categories" },
-];
+const socialIcons = {
+  Instagram: InstagramIcon,
+  TikTok: TiktokIcon,
+  YouTube: YoutubeIcon,
+  X: XIcon,
+} as const;
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const f = content.footer;
 
   return (
-    <footer className="border-t border-border bg-surface">
-      <Container className="py-12 md:py-16">
-        <div className="grid gap-10 md:grid-cols-[1.3fr_0.8fr_1.2fr]">
-          <div className="flex flex-col gap-3">
-            <p className="text-h3 font-semibold tracking-tight text-ink">{site.name}</p>
-            <p className="max-w-sm text-body-sm text-ink-faint">{content.footer.blurb}</p>
+    <footer className="border-t border-gray-900 bg-brand-dark pt-12 pb-6 text-xs text-white">
+      <Container className="max-w-7xl mx-auto px-4">
+        <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-5">
+          {/* Col 1: Bio & Social */}
+          <div className="md:col-span-2 pr-6">
+            <Link
+              href="/"
+              className="mb-3 block text-2xl font-black italic tracking-tighter"
+              aria-label={`${site.name} home`}
+            >
+              {site.name}
+            </Link>
+            <p className="mb-4 max-w-sm leading-relaxed text-gray-400">
+              {f.blurb}
+            </p>
+            <div className="flex space-x-4 text-base text-gray-400">
+              {f.social.map((s) => {
+                const Icon = socialIcons[s.label as keyof typeof socialIcons];
+                return Icon ? (
+                  <a key={s.label} href={s.href} className="hover:text-white transition-colors" aria-label={s.label}>
+                    <Icon className="h-5 w-5" />
+                  </a>
+                ) : null;
+              })}
+            </div>
           </div>
 
-          <nav aria-label="Footer" className="flex flex-col gap-2">
-            <p className="text-label uppercase text-ink-faint">Shop</p>
-            {footerLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-body-sm text-ink-soft transition-colors hover:text-ink"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+          {/* Col 2: Shop */}
+          <div>
+            <h5 className="mb-3 text-sm font-bold uppercase tracking-wider text-gray-200">Shop</h5>
+            <ul className="space-y-2 text-gray-400">
+              {f.shop.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="hover:text-white transition-colors">{link.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          <div className="flex flex-col gap-3">
-            <p className="text-h3 font-medium text-ink">{content.newsletter.title}</p>
-            <p className="max-w-sm text-body-sm text-ink-soft">{content.newsletter.description}</p>
-            <NewsletterForm />
+          {/* Col 3: Customer Care */}
+          <div>
+            <h5 className="mb-3 text-sm font-bold uppercase tracking-wider text-gray-200">Customer Care</h5>
+            <ul className="space-y-2 text-gray-400">
+              {f.customerCare.map((link) => (
+                <li key={link.label}>
+                  <Link href={link.href} className="hover:text-white transition-colors">{link.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Col 4: Company */}
+          <div>
+            <h5 className="mb-3 text-sm font-bold uppercase tracking-wider text-gray-200">Company</h5>
+            <ul className="space-y-2 text-gray-400">
+              {f.company.map((link) => (
+                <li key={link.label}>
+                  <Link href={link.href} className="hover:text-white transition-colors">{link.label}</Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-2 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-label uppercase text-ink-faint">
-            © {year} {site.name}
-          </p>
-          <p className="text-body-sm text-ink-faint">Prices in INR · Cart is stored locally</p>
+        {/* Bottom bar */}
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-gray-900 pt-6 text-gray-500 sm:flex-row">
+          <p>&copy; {year} {site.name}. All rights reserved.</p>
+          <div className="flex items-center space-x-6">
+            <span>EN / INR</span>
+            <div className="flex space-x-3 text-sm text-gray-300">
+              {["VISA", "MC", "PayPal", "Pay"].map((p) => (
+                <span key={p} className="rounded border border-gray-700 px-2 py-0.5 text-[0.625rem] font-bold uppercase">
+                  {p}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </Container>
     </footer>

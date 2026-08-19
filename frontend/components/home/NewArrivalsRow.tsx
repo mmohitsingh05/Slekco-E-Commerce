@@ -1,33 +1,30 @@
 import Link from "next/link";
 import { getProducts } from "@/lib/api";
 import { content } from "@/lib/content";
-import { Container } from "@/components/ui/Container";
+import { ArrowRightIcon } from "@/components/ui/icons";
 import { ProductGrid } from "@/components/product/ProductGrid";
 
 export async function NewArrivalsRow() {
-  const { items } = await getProducts({ limit: 8, sort: "newest" });
+  const { items } = await getProducts({ limit: 6, sort: "newest" });
 
   if (items.length === 0) return null;
 
   return (
-    <section aria-labelledby="new-arrivals-heading" className="border-t border-border bg-surface">
-      <Container className="py-12 md:py-16">
-        <div className="mb-6 flex items-end justify-between">
-          <div>
-            <h2 id="new-arrivals-heading" className="text-h2 font-semibold tracking-tight text-ink">
-              {content.newArrivals.title}
-            </h2>
-            <p className="mt-1 text-body-sm text-ink-faint">{content.newArrivals.subtitle}</p>
-          </div>
+    <section aria-labelledby="new-arrivals-heading">
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="mb-6 flex items-center justify-between">
+          <h2 id="new-arrivals-heading" className="text-2xl font-black uppercase tracking-wider">
+            {content.newArrivals.title}
+          </h2>
           <Link
             href="/products?sort=newest"
-            className="text-body-sm font-medium text-accent transition-colors hover:text-accent-hover"
+            className="flex items-center gap-1 text-xs font-bold uppercase hover:underline"
           >
-            Shop new arrivals
+            View all <ArrowRightIcon className="h-3 w-3" />
           </Link>
         </div>
-        <ProductGrid products={items} />
-      </Container>
+        <ProductGrid products={items} columns={6} />
+      </div>
     </section>
   );
 }

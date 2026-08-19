@@ -1,14 +1,15 @@
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 
-type Variant = "primary" | "outline" | "ghost";
+type Variant = "primary" | "outline" | "outline-light" | "ghost";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-body-sm font-medium transition-colors duration-fast ease-out focus-visible:outline-2 focus-visible:outline-offset-2";
+  "inline-flex items-center justify-center gap-2 rounded-md px-8 py-3 text-xs font-bold uppercase tracking-wide transition-colors duration-fast ease-out focus-visible:outline-2 focus-visible:outline-offset-2";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-accent text-surface hover:bg-accent-hover",
-  outline: "border border-border bg-transparent text-ink hover:border-ink",
+  primary: "bg-brand-yellow text-brand-dark hover:bg-brand-yellow-hover",
+  outline: "border border-ink bg-transparent text-ink hover:bg-ink hover:text-surface",
+  "outline-light": "border border-white bg-transparent text-white hover:bg-white hover:text-brand-dark",
   ghost: "text-ink-soft hover:text-ink",
 };
 

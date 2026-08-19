@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Shopping Cart | URBANX</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandYellow: '#D4F038',
+                        brandDark: '#0B0B0B',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-black font-sans antialiased">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-black text-white text-xs py-2 px-4 flex justify-between items-center border-b border-gray-800">
+        <div class="flex items-center space-x-2">
+            <i class="fa-solid fa-truck text-xs"></i>
+            <span>FREE SHIPPING ON ORDERS OVER $100</span>
+        </div>
+        <div class="flex space-x-4 text-gray-400 text-xs">
+            <a href="#" class="hover:text-white transition">HELP</a>
+            <span>|</span>
+            <a href="#" class="hover:text-white transition">TRACK ORDER</a>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <header class="sticky top-0 z-40 bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#" class="text-2xl font-black tracking-tighter uppercase italic">URBANX</a>
+
+            <nav class="hidden md:flex space-x-8 font-bold text-xs tracking-wider">
+                <a href="#" class="hover:text-gray-600 transition">HOME</a>
+                <a href="#" class="hover:text-gray-600 transition">SHOP</a>
+                <a href="#" class="hover:text-gray-600 transition">NEW ARRIVALS</a>
+                <a href="#" class="hover:text-gray-600 transition">COLLECTIONS</a>
+                <a href="#" class="hover:text-gray-600 transition">SALE</a>
+            </nav>
+
+            <div class="flex items-center space-x-5 text-base">
+                <button class="hover:text-gray-600"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="hover:text-gray-600"><i class="fa-regular fa-user"></i></button>
+                <button class="hover:text-gray-600 relative">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="absolute -top-2 -right-2 bg-brandYellow text-black text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">2</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- PAGE TITLE -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+        <h1 class="text-3xl font-black uppercase tracking-tight">YOUR BAG (2)</h1>
+    </div>
+
+    <!-- MAIN CART CONTENT -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 mb-16">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+            <!-- LEFT: CART ITEMS LIST (7 Cols) -->
+            <div class="lg:col-span-7 space-y-6">
+
+                <!-- Free Shipping Progress Bar -->
+                <div class="bg-gray-50 border border-gray-200 p-4">
+                    <p class="text-xs font-bold uppercase mb-2">
+                        🎉 You are <span class="text-black">$11.00</span> away from <span class="text-black">FREE SHIPPING!</span>
+                    </p>
+                    <div class="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
+                        <div class="bg-black h-full rounded-full" style="width: 89%;"></div>
+                    </div>
+                </div>
+
+                <!-- Table Header -->
+                <div class="hidden sm:grid grid-cols-12 gap-4 pb-3 border-b border-gray-200 text-xs font-bold uppercase text-gray-500">
+                    <div class="col-span-6">Product</div>
+                    <div class="col-span-3 text-center">Quantity</div>
+                    <div class="col-span-3 text-right">Total</div>
+                </div>
+
+                <!-- Cart Item 1 -->
+                <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center pb-6 border-b border-gray-200">
+                    <div class="sm:col-span-6 flex space-x-4">
+                        <div class="w-20 h-24 bg-gray-100 shrink-0 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover">
+                        </div>
+                        <div class="space-y-1">
+                            <h3 class="font-bold text-xs uppercase">WASHED HOODIE - CHARCOAL</h3>
+                            <p class="text-xs text-gray-500">Size: M | Color: Charcoal</p>
+                            <p class="text-xs font-bold sm:hidden">$89.00</p>
+                            <button class="text-xs text-gray-400 hover:text-black underline pt-2 block">Remove</button>
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-3 flex justify-start sm:justify-center items-center">
+                        <div class="flex items-center border border-gray-300">
+                            <button class="px-2.5 py-1 text-gray-500 hover:text-black font-bold text-xs">-</button>
+                            <span class="px-3 py-1 text-xs font-bold">1</span>
+                            <button class="px-2.5 py-1 text-gray-500 hover:text-black font-bold text-xs">+</button>
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-3 text-right hidden sm:block">
+                        <span class="font-black text-sm">$89.00</span>
+                    </div>
+                </div>
+
+                <!-- Cart Item 2 -->
+                <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center pb-6 border-b border-gray-200">
+                    <div class="sm:col-span-6 flex space-x-4">
+                        <div class="w-20 h-24 bg-gray-100 shrink-0 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover">
+                        </div>
+                        <div class="space-y-1">
+                            <h3 class="font-bold text-xs uppercase">URBANX CAP - BLACK</h3>
+                            <p class="text-xs text-gray-500">Size: One Size | Color: Black</p>
+                            <p class="text-xs font-bold sm:hidden">$45.00</p>
+                            <button class="text-xs text-gray-400 hover:text-black underline pt-2 block">Remove</button>
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-3 flex justify-start sm:justify-center items-center">
+                        <div class="flex items-center border border-gray-300">
+                            <button class="px-2.5 py-1 text-gray-500 hover:text-black font-bold text-xs">-</button>
+                            <span class="px-3 py-1 text-xs font-bold">1</span>
+                            <button class="px-2.5 py-1 text-gray-500 hover:text-black font-bold text-xs">+</button>
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-3 text-right hidden sm:block">
+                        <span class="font-black text-sm">$45.00</span>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <a href="#" class="text-xs font-bold uppercase underline hover:text-gray-600">← Continue Shopping</a>
+                </div>
+
+            </div>
+
+            <!-- RIGHT: ORDER SUMMARY (5 Cols) -->
+            <div class="lg:col-span-5">
+                <div class="bg-gray-50 p-6 border border-gray-200 space-y-6">
+                    <h2 class="text-lg font-black uppercase border-b border-gray-200 pb-3">Order Summary</h2>
+
+                    <!-- Promo Code Input -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase mb-2">Discount Code / Gift Card</label>
+                        <div class="flex gap-2">
+                            <input type="text" placeholder="Enter code (e.g. STREET10)" class="flex-1 bg-white border border-gray-300 px-3 py-2 text-xs uppercase focus:outline-none focus:border-black">
+                            <button class="bg-black text-white px-4 py-2 text-xs font-bold uppercase hover:bg-gray-800 transition">Apply</button>
+                        </div>
+                    </div>
+
+                    <!-- Price Calculations -->
+                    <div class="space-y-3 border-y border-gray-200 py-4 text-xs font-medium">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Subtotal</span>
+                            <span class="font-bold">$134.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Estimated Shipping</span>
+                            <span class="font-bold">$10.00</span>
+                        </div>
+                        <div class="flex justify-between text-green-700">
+                            <span>Promo Discount (STREET10)</span>
+                            <span class="font-bold">-$13.40</span>
+                        </div>
+                    </div>
+
+                    <!-- Total -->
+                    <div class="flex justify-between items-center text-base font-black">
+                        <span>ESTIMATED TOTAL</span>
+                        <span class="text-xl">$130.60</span>
+                    </div>
+
+                    <p class="text-[11px] text-gray-500">Taxes and shipping calculated at checkout.</p>
+
+                    <!-- Checkout CTA -->
+                    <button class="w-full bg-brandYellow text-black font-black text-xs uppercase tracking-wider py-4 hover:bg-yellow-400 transition shadow">
+                        Proceed to Checkout
+                    </button>
+
+                    <!-- Payment Icons -->
+                    <div class="text-center pt-2">
+                        <span class="text-[10px] uppercase font-bold text-gray-400 block mb-2">Guaranteed Safe Checkout</span>
+                        <div class="flex justify-center space-x-3 text-xl text-gray-400">
+                            <i class="fa-brands fa-cc-visa"></i>
+                            <i class="fa-brands fa-cc-mastercard"></i>
+                            <i class="fa-brands fa-cc-paypal"></i>
+                            <i class="fa-brands fa-cc-apple-pay"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

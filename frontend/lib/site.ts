@@ -9,8 +9,9 @@ export const site = {
 
   /** Static site navigation. Category links are populated from the API. */
   nav: [
+    { label: "Home", href: "/" },
     { label: "Shop", href: "/products" },
-    { label: "Categories", href: "/#categories" },
+    { label: "Collections", href: "/#categories" },
   ] as const,
 } as const;
 

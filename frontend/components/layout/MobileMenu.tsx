@@ -13,8 +13,8 @@ export function MobileMenu({
   return (
     <div
       id="mobile-menu"
-      className={`overflow-hidden border-b border-border bg-surface transition-[max-height,opacity] duration-base ease-out md:hidden ${
-        open ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
+      className={`overflow-hidden border-b border-gray-200 bg-white transition-[max-height,opacity] duration-base ease-out md:hidden ${
+        open ? "max-h-72 opacity-100" : "max-h-0 opacity-0"
       }`}
     >
       <nav aria-label="Mobile" className="flex flex-col px-5 py-4">
@@ -23,7 +23,7 @@ export function MobileMenu({
             key={item.href}
             href={item.href}
             onClick={onClose}
-            className="rounded-md px-3 py-3 text-body text-ink transition-colors hover:bg-canvas"
+            className="rounded-md px-3 py-3 text-sm font-bold uppercase tracking-wide text-brand-dark transition-colors hover:bg-gray-50"
           >
             {item.label}
           </Link>

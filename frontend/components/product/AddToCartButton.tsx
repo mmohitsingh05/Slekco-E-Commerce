@@ -9,11 +9,13 @@ export function AddToCartButton({
   qty,
   disabled,
   size = "md",
+  label = "Add to cart",
 }: {
   product: { productId: string; slug: string; name: string; image: string; price: number };
   qty: number;
   disabled?: boolean;
   size?: "md" | "sm";
+  label?: string;
 }) {
   const addItem = useCartStore((state) => state.addItem);
   const openCart = useUiStore((state) => state.openCart);
@@ -26,16 +28,16 @@ export function AddToCartButton({
     window.setTimeout(() => setAdded(false), 1600);
   };
 
-  const sizeClass = size === "sm" ? "h-9 min-w-0 px-4" : "h-11 min-w-40 px-6";
+  const sizeClass = size === "sm" ? "h-8 min-w-0 px-3" : "h-11 min-w-40 px-6";
 
   return (
     <button
       type="button"
       onClick={handleClick}
       disabled={disabled}
-      className={`flex items-center justify-center rounded-md bg-accent text-body-sm font-medium text-surface transition-colors duration-fast ease-out hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-50 ${sizeClass}`}
+      className={`flex items-center justify-center rounded-md bg-accent text-[11px] font-bold uppercase tracking-wide text-accent-foreground transition-colors duration-fast ease-out hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-50 ${sizeClass}`}
     >
-      {added ? "Added ✓" : disabled ? "Out of stock" : "Add to cart"}
+      {added ? "Added ✓" : disabled ? "Out of stock" : label}
     </button>
   );
 }

@@ -1,40 +1,116 @@
 "use client";
 
 import Link from "next/link";
-import { selectCount, selectSubtotal, useCartStore } from "@/store/cart-store";
-import { useUiStore } from "@/store/ui-store";
+import { useCartStore, selectCount, selectSubtotal } from "@/store/cart-store";
+import { content } from "@/lib/content";
 import { formatINR } from "@/lib/format";
 
-export function CartSummary({ showViewCart = true }: { showViewCart?: boolean }) {
-  const subtotal = useCartStore(selectSubtotal);
+export function CartSummary({
+  onCheckout,
+  variant = "drawer",
+  showViewCart = true,
+}: {
+  onCheckout?: () => void;
+  variant?: "drawer" | "page";
+  showViewCart?: boolean;
+}) {
+  const items = useCartStore((state) => state.items);
   const count = useCartStore(selectCount);
-  const closeCart = useUiStore((state) => state.closeCart);
+  const subtotal = useCartStore(selectSubtotal);
+  const remaining = content.freeShippingThreshold - subtotal;
+  const unlocked = remaining <= 0;
 
-  return (
-    <div className="flex flex-col gap-4 border-t border-border pt-4">
-      <div className="flex items-baseline justify-between">
-        <span className="text-body-sm text-ink-soft">
-          Subtotal ({count} {count === 1 ? "item" : "items"})
-        </span>
-        <span className="text-h3 font-semibold text-ink">{formatINR(subtotal)}</span>
-      </div>
-      <p className="text-body-xs text-ink-faint">
-        Checkout is not part of this demo. Prices shown are the live product prices.
-      </p>
-      <div className="flex flex-col gap-2">
-        {showViewCart && (
-          <Link
-            href="/cart"
-            onClick={closeCart}
-            className="flex h-11 items-center justify-center rounded-md bg-accent px-6 text-body-sm font-medium text-surface transition-colors hover:bg-accent-hover"
+  const total = Math.max(0, subtotal);
+
+  if (variant === "page") {
+    return (
+      <div className="space-y-4">
+        <h2 className="font-black uppercase tracking-tight">Order Summary</h2>
+        <div className="space-y-2 text-body-sm">
+          <p className="text-ink-faint">
+            {count} {count === 1 ? "item" : "items"}
+          </p>
+          <div className="flex justify-between">
+            <span>Subtotal</span>
+            <span className="font-bold">{formatINR(subtotal)}</span>
+          </div>
+          <div className="flex justify-between">
+            <span>Shipping</span>
+            <span className={unlocked ? "text-success font-bold" : "font-bold"}>
+              {unlocked ? "Free" : formatINR(content.freeShippingThreshold)}
+            </span>
+          </div>
+          {!unlocked && (
+            <p className="text-[11px] text-ink-faint">
+              Spend {formatINR(content.freeShippingThreshold - subtotal)} more for free shipping
+            </p>
+          )}
+          <div className="border-t border-border pt-2 text-sm font-black">
+            <div className="flex justify-between">
+              <span>Total</span>
+              <span>{formatINR(total)}</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          {showViewCart && (
+            <Link
+              href="/cart"
+              className="flex h-11 w-full items-center justify-center border border-border text-body-sm font-medium transition-colors hover:bg-canvas"
+            >
+              View cart
+            </Link>
+          )}
+          <button
+            type="button"
+            onClick={onCheckout}
+            disabled={count === 0}
+            className="h-12 w-full bg-accent text-accent-foreground font-black uppercase tracking-wide transition-colors hover:bg-accent-hover disabled:opacity-50"
           >
-            View cart
-          </Link>
-        )}
+            Proceed to checkout
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Drawer variant
+  return (
+    <div className="space-y-3">
+      <div className="space-y-2">
+        <div className="flex items-center justify-between text-xs">
+          <span className="text-ink-faint">
+            Subtotal ({count} {count === 1 ? "item" : "items"})
+          </span>
+          <span className="font-bold whitespace-nowrap">{formatINR(subtotal)}</span>
+        </div>
+        <div className="flex items-center justify-between text-xs">
+          <span className="text-ink-faint">Shipping</span>
+          <span className={unlocked ? "font-bold text-success whitespace-nowrap" : "font-bold whitespace-nowrap"}>
+            {unlocked ? "Free" : "—"}
+          </span>
+        </div>
+      </div>
+
+      <div className="border-t border-border pt-3">
+        <div className="flex items-center justify-between">
+          <span className="text-sm font-bold text-ink">Estimated total</span>
+          <span className="text-sm font-black whitespace-nowrap">{formatINR(total)}</span>
+        </div>
+        <p className="mt-1 text-[10px] text-ink-faint">Taxes and shipping calculated at checkout</p>
+      </div>
+
+      <div className="space-y-2 pt-1">
+        <Link
+          href="/cart"
+          className="flex h-11 w-full items-center justify-center rounded-md bg-accent text-[11px] font-bold uppercase tracking-wide text-accent-foreground transition-colors hover:bg-accent-hover"
+        >
+          View cart
+        </Link>
         <Link
           href="/products"
-          onClick={closeCart}
-          className="flex h-11 items-center justify-center rounded-md border border-border text-body-sm font-medium text-ink transition-colors hover:bg-surface"
+          className="flex h-10 w-full items-center justify-center rounded-md border border-border text-[11px] font-bold uppercase tracking-wide text-ink transition-colors hover:bg-canvas"
         >
           Continue shopping
         </Link>

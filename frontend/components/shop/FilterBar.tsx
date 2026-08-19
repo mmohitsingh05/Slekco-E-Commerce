@@ -12,7 +12,7 @@ function RadioDot({ active }: { active: boolean }) {
     <span
       aria-hidden="true"
       className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full border transition-colors ${
-        active ? "border-accent bg-accent" : "border-border bg-surface"
+        active ? "border-brand-dark bg-brand-dark" : "border-border bg-surface"
       }`}
     >
       {active && <span className="h-1.5 w-1.5 rounded-full bg-surface" />}
@@ -101,7 +101,7 @@ export function FilterBar({
               <button
                 type="button"
                 onClick={clearAll}
-                className="text-body-sm font-medium text-accent underline-offset-2 hover:underline"
+                className="text-body-sm font-medium text-brand-dark underline-offset-2 hover:underline"
               >
                 Clear all
               </button>
@@ -177,7 +177,7 @@ export function FilterBar({
             <button
               type="button"
               onClick={() => setParams({ minPrice: min || null, maxPrice: max || null })}
-              className="mt-3 h-10 w-full rounded-md bg-accent text-body-sm font-medium text-surface transition-colors hover:bg-accent-hover"
+              className="mt-3 h-10 w-full rounded-md bg-accent text-body-sm font-medium text-accent-foreground transition-colors hover:bg-accent-hover"
             >
               Apply
             </button>

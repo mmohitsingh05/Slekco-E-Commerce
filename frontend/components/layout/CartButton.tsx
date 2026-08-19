@@ -21,12 +21,12 @@ export function CartButton() {
       type="button"
       onClick={toggleCart}
       aria-label={`Open cart${isClient && count > 0 ? `, ${count} items` : ""}`}
-      className="relative flex h-11 w-11 items-center justify-center rounded-md text-ink-soft transition-colors hover:bg-surface hover:text-ink"
+      className="relative hover:text-gray-600 transition-colors"
     >
       <CartIcon />
       {isClient && count > 0 && (
         <span
-          className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-accent px-1 text-label text-surface"
+          className="absolute -right-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-brand-yellow px-1 text-[0.625rem] font-bold text-brand-dark"
           aria-live="polite"
         >
           {count}

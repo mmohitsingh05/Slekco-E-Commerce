@@ -7,19 +7,26 @@
 --------------------------------------------------------------------------- */
 
 @theme {
-  /* Brand / neutral colors */
-  --color-ink: #1a1a1a;
-  --color-ink-soft: #4d4d4d;
-  --color-ink-faint: #8a8a8a;
-  --color-canvas: #fafaf7;
-  --color-surface: #ffffff;
-  --color-border: #e6e4de;
-  --color-overlay: rgb(26 26 26 / 0.5);
+  /* Brand palette */
+  --color-brand-dark: #0b0b0b;
+  --color-brand-yellow: #d4f038;
+  --color-brand-yellow-hover: #facc15;
+  --color-card-gray: #161616;
 
-  /* Accent */
-  --color-accent: #0f4c44;
-  --color-accent-hover: #0b3d36;
-  --color-accent-soft: #e4efec;
+  /* Neutral scale */
+  --color-ink: #0b0b0b;
+  --color-ink-soft: #6b7280;
+  --color-ink-faint: #9ca3af;
+  --color-canvas: #ffffff;
+  --color-surface: #ffffff;
+  --color-border: #e5e7eb;
+  --color-overlay: rgb(11 11 11 / 0.5);
+
+  /* Accent — lime-yellow (template match) */
+  --color-accent: #d4f038;
+  --color-accent-hover: #facc15;
+  --color-accent-soft: #f4f8cf;
+  --color-accent-foreground: #0b0b0b;
 
   /* Feedback */
   --color-success: #2e7d32;
@@ -63,9 +70,9 @@
   --radius-full: 9999px;
 
   /* Shadows / elevation */
-  --shadow-card: 0 1px 2px rgb(26 26 26 / 0.05);
-  --shadow-card-hover: 0 8px 24px rgb(26 26 26 / 0.08);
-  --shadow-drawer: -8px 0 32px rgb(26 26 26 / 0.12);
+  --shadow-card: 0 1px 2px rgb(11 11 11 / 0.05);
+  --shadow-card-hover: 0 8px 24px rgb(11 11 11 / 0.08);
+  --shadow-drawer: -8px 0 32px rgb(11 11 11 / 0.12);
   --shadow-sticky: 0 1px 0 var(--color-border);
 
   /* Motion — easing */
@@ -100,13 +107,13 @@ body {
 
 /* Focus visibility — accent ring on all interactive elements */
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-brand-dark);
   outline-offset: 2px;
 }
 
 ::selection {
-  background-color: var(--color-accent-soft);
-  color: var(--color-ink);
+  background-color: var(--color-brand-yellow);
+  color: var(--color-brand-dark);
 }
 
 @media (prefers-reduced-motion: reduce) {

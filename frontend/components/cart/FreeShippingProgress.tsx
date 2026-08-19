@@ -9,17 +9,19 @@ export function FreeShippingProgress({ subtotal }: { subtotal: number }) {
     100,
     Math.round((subtotal / content.freeShippingThreshold) * 100),
   );
+  const unlocked = remaining === 0;
 
   return (
-    <div className="px-6 pb-4">
-      {remaining > 0 ? (
-        <p className="mb-2 text-body-sm text-ink-soft">
-          You&apos;re <strong className="font-medium text-ink">{formatINR(remaining)}</strong>{" "}
-          away from free shipping
+    <div className="space-y-2">
+      {unlocked ? (
+        <p className="text-[11px] font-bold uppercase tracking-wide text-success">
+          You&apos;ve unlocked free shipping!
         </p>
       ) : (
-        <p className="mb-2 text-body-sm font-medium text-success">
-          You&apos;ve unlocked free shipping on this order
+        <p className="text-[11px] font-bold uppercase tracking-wide">
+          You&apos;re{" "}
+          <span className="text-ink">{formatINR(remaining)}</span>{" "}
+          away from free shipping
         </p>
       )}
       <div
@@ -30,7 +32,7 @@ export function FreeShippingProgress({ subtotal }: { subtotal: number }) {
         className="h-1.5 w-full overflow-hidden rounded-full bg-border"
       >
         <div
-          className="h-full rounded-full bg-accent transition-[width] duration-fast ease-out"
+          className={`h-full rounded-full transition-[width] duration-fast ease-out ${unlocked ? "bg-success" : "bg-ink"}`}
           style={{ width: `${percent}%` }}
         />
       </div>

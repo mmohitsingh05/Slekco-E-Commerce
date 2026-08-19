@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WASHED HOODIE - CHARCOAL | URBANX</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandYellow: '#D4F038',
+                        brandDark: '#0B0B0B',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-black font-sans antialiased">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-black text-white text-xs py-2 px-4 flex justify-between items-center border-b border-gray-800">
+        <div class="flex items-center space-x-2">
+            <i class="fa-solid fa-truck text-xs"></i>
+            <span class="hidden sm:inline">FREE SHIPPING ON ORDERS OVER $100</span>
+            <span class="sm:hidden">FREE SHIPPING OVER $100</span>
+        </div>
+        <div class="flex space-x-4 text-gray-400 text-xs">
+            <a href="#" class="hover:text-white transition">HELP</a>
+            <span>|</span>
+            <a href="#" class="hover:text-white transition">TRACK ORDER</a>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <header class="sticky top-0 z-40 bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#" class="text-2xl font-black tracking-tighter uppercase italic">URBANX</a>
+
+            <nav class="hidden md:flex space-x-8 font-bold text-xs tracking-wider">
+                <a href="#" class="hover:text-gray-600 transition">HOME</a>
+                <a href="#" class="border-b-2 border-brandYellow pb-1">SHOP</a>
+                <a href="#" class="hover:text-gray-600 transition">NEW ARRIVALS</a>
+                <a href="#" class="hover:text-gray-600 transition">COLLECTIONS</a>
+                <a href="#" class="hover:text-gray-600 transition">SALE</a>
+            </nav>
+
+            <div class="flex items-center space-x-5 text-base">
+                <button class="hover:text-gray-600"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="hover:text-gray-600"><i class="fa-regular fa-user"></i></button>
+                <button class="hover:text-gray-600 relative">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="absolute -top-2 -right-2 bg-brandYellow text-black text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">1</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div class="text-xs text-gray-500">
+            <a href="#" class="hover:underline">Home</a> / <a href="#" class="hover:underline">Shop</a> / <a href="#" class="hover:underline">Hoodies</a> / <span class="text-black font-semibold">Washed Hoodie - Charcoal</span>
+        </div>
+    </div>
+
+    <!-- MAIN PRODUCT SECTION -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            
+            <!-- LEFT: PRODUCT GALLERY (7 Cols) -->
+            <div class="lg:col-span-7 flex flex-col-reverse md:flex-row gap-4">
+                <!-- Thumbnails -->
+                <div class="flex md:flex-col gap-3 overflow-x-auto md:overflow-y-auto w-full md:w-24 shrink-0">
+                    <button class="border-2 border-black aspect-[3/4] w-20 md:w-full overflow-hidden bg-gray-100">
+                        <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover">
+                    </button>
+                    <button class="border border-gray-200 opacity-70 hover:opacity-100 aspect-[3/4] w-20 md:w-full overflow-hidden bg-gray-100">
+                        <img src="https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover">
+                    </button>
+                    <button class="border border-gray-200 opacity-70 hover:opacity-100 aspect-[3/4] w-20 md:w-full overflow-hidden bg-gray-100">
+                        <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover">
+                    </button>
+                </div>
+
+                <!-- Main Featured Image -->
+                <div class="flex-1 relative bg-gray-100 aspect-[3/4] overflow-hidden">
+                    <span class="absolute top-4 left-4 bg-brandYellow text-black text-xs font-black px-2.5 py-1 uppercase z-10">Best Seller</span>
+                    <button class="absolute top-4 right-4 bg-white p-2.5 rounded-full shadow hover:bg-black hover:text-white transition z-10">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                    <img id="mainImage" src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <!-- RIGHT: PRODUCT INFO & PURCHASE (5 Cols) -->
+            <div class="lg:col-span-5 space-y-6">
+                <div>
+                    <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">URBANX CLASSICS</span>
+                    <h1 class="text-3xl font-black uppercase tracking-tight mt-1">WASHED HOODIE - CHARCOAL</h1>
+                    <div class="flex items-center space-x-3 mt-3">
+                        <span class="text-2xl font-black">$89.00</span>
+                        <span class="text-xs bg-gray-100 text-gray-700 px-2 py-1 font-bold">Tax included</span>
+                    </div>
+                </div>
+
+                <p class="text-xs text-gray-600 leading-relaxed">
+                    Heavyweight 450GSM organic cotton hoodie featuring a custom acid-wash treatment, dropped shoulders, and a double-lined hood for the ultimate oversized boxy fit.
+                </p>
+
+                <!-- Color Selection -->
+                <div>
+                    <div class="flex justify-between text-xs font-bold uppercase mb-2">
+                        <span>Color: <span class="text-gray-500 font-normal">Charcoal Grey</span></span>
+                    </div>
+                    <div class="flex space-x-3">
+                        <button class="w-8 h-8 rounded-full bg-stone-700 ring-2 ring-black ring-offset-2"></button>
+                        <button class="w-8 h-8 rounded-full bg-black hover:scale-105 transition"></button>
+                        <button class="w-8 h-8 rounded-full bg-amber-100 hover:scale-105 transition"></button>
+                    </div>
+                </div>
+
+                <!-- Size Selection -->
+                <div>
+                    <div class="flex justify-between items-center text-xs font-bold uppercase mb-2">
+                        <span>Select Size:</span>
+                        <a href="#" class="underline text-gray-500 hover:text-black">Size Guide</a>
+                    </div>
+                    <div class="grid grid-cols-5 gap-2 text-xs font-bold">
+                        <button class="border border-gray-300 py-3 hover:border-black transition">S</button>
+                        <button class="border border-black bg-black text-white py-3">M</button>
+                        <button class="border border-gray-300 py-3 hover:border-black transition">L</button>
+                        <button class="border border-gray-300 py-3 hover:border-black transition">XL</button>
+                        <button class="border border-gray-200 text-gray-300 py-3 cursor-not-allowed line-through">XXL</button>
+                    </div>
+                </div>
+
+                <!-- Quantity & Add to Cart -->
+                <div class="space-y-3 pt-2">
+                    <div class="flex gap-3">
+                        <!-- Quantity Selector -->
+                        <div class="flex items-center border border-gray-300 w-32 justify-between px-3 py-3">
+                            <button class="text-gray-500 hover:text-black font-bold">-</button>
+                            <span class="text-xs font-bold">1</span>
+                            <button class="text-gray-500 hover:text-black font-bold">+</button>
+                        </div>
+
+                        <!-- Add To Cart -->
+                        <button class="flex-1 bg-brandYellow text-black font-black text-xs uppercase tracking-wider hover:bg-yellow-400 transition py-3">
+                            Add To Bag
+                        </button>
+                    </div>
+
+                    <!-- Buy It Now Button -->
+                    <button class="w-full bg-black text-white font-black text-xs uppercase tracking-wider hover:bg-gray-800 transition py-3.5">
+                        Buy It Now
+                    </button>
+                </div>
+
+                <!-- Accordions (Details, Shipping, Returns) -->
+                <div class="border-t border-gray-200 pt-4 space-y-4 text-xs font-bold uppercase">
+                    <details class="group cursor-pointer">
+                        <summary class="flex justify-between items-center py-2 border-b border-gray-100">
+                            <span>Product Features & Specs</span>
+                            <i class="fa-solid fa-plus text-xs group-open:hidden"></i>
+                            <i class="fa-solid fa-minus text-xs hidden group-open:block"></i>
+                        </summary>
+                        <div class="py-3 text-gray-600 font-normal normal-case space-y-1 leading-relaxed">
+                            <p>• 100% Premium Heavyweight Cotton (450 GSM)</p>
+                            <p>• Signature Acid-Washed Vintage Finish</p>
+                            <p>• Custom Boxy & Dropped Shoulder Fit</p>
+                            <p>• Ribbed Cuffs and Hem</p>
+                        </div>
+                    </details>
+
+                    <details class="group cursor-pointer">
+                        <summary class="flex justify-between items-center py-2 border-b border-gray-100">
+                            <span>Shipping & Delivery</span>
+                            <i class="fa-solid fa-plus text-xs group-open:hidden"></i>
+                            <i class="fa-solid fa-minus text-xs hidden group-open:block"></i>
+                        </summary>
+                        <div class="py-3 text-gray-600 font-normal normal-case">
+                            Free standard shipping on all orders over $100. Delivered in 3-5 business days.
+                        </div>
+                    </details>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- RELATED PRODUCTS -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-gray-200 mt-12">
+        <h2 class="text-xl font-black uppercase tracking-wider mb-8 text-center">YOU MAY ALSO LIKE</h2>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <!-- Item 1 -->
+            <div class="group">
+                <div class="relative bg-gray-100 mb-3 aspect-[3/4] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <h3 class="font-bold text-xs uppercase">UTILITY CARGO PANTS</h3>
+                <p class="text-xs font-bold text-gray-700 mt-1">$99.00</p>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="group">
+                <div class="relative bg-gray-100 mb-3 aspect-[3/4] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <h3 class="font-bold text-xs uppercase">CHAOS TEE - BLACK</h3>
+                <p class="text-xs font-bold text-gray-700 mt-1">$49.00</p>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="group">
+                <div class="relative bg-gray-100 mb-3 aspect-[3/4] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <h3 class="font-bold text-xs uppercase">URBANX CAP - BLACK</h3>
+                <p class="text-xs font-bold text-gray-700 mt-1">$45.00</p>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="group">
+                <div class="relative bg-gray-100 mb-3 aspect-[3/4] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <h3 class="font-bold text-xs uppercase">SOCIETY HOODIE - OLIVE</h3>
+                <p class="text-xs font-bold text-gray-700 mt-1">$89.00</p>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

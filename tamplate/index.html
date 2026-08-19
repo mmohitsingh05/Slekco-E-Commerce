@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URBANX - Streetwear Brand</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandYellow: '#D4F038',
+                        brandDark: '#0B0B0B',
+                        cardGray: '#161616',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-black font-sans antialiased">
+
+    <!-- 1. TOP ANNOUNCEMENT BAR -->
+    <div class="bg-black text-white text-xs py-2 px-4 flex flex-col md:flex-row justify-between items-center border-b border-gray-800 space-y-1 md:space-y-0">
+        <div class="flex items-center space-x-2">
+            <i class="fa-solid font-bold fa-truck text-xs"></i>
+            <span>FREE SHIPPING ON ORDERS OVER $100</span>
+        </div>
+        <div class="flex items-center space-x-2">
+            <i class="fa-solid fa-bell text-xs"></i>
+            <span>10% OFF YOUR FIRST ORDER | CODE: <strong class="text-brandYellow">STREET10</strong></span>
+        </div>
+        <div class="flex space-x-4 text-gray-400">
+            <a href="#" class="hover:text-white transition">HELP & SUPPORT</a>
+            <span>|</span>
+            <a href="#" class="hover:text-white transition">TRACK ORDER</a>
+        </div>
+    </div>
+
+    <!-- 2. MAIN HEADER & NAVIGATION -->
+    <header class="sticky top-0 z-50 bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="text-3xl font-black tracking-tighter uppercase italic">URBANX</a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex space-x-8 font-bold text-sm tracking-wide">
+                <a href="#" class="border-b-2 border-brandYellow pb-1">HOME</a>
+                <a href="#" class="hover:text-gray-600 transition">SHOP <i class="fa-solid fa-chevron-down text-xs ml-1"></i></a>
+                <a href="#" class="hover:text-gray-600 transition">NEW ARRIVALS</a>
+                <a href="#" class="hover:text-gray-600 transition">COLLECTIONS</a>
+                <a href="#" class="hover:text-gray-600 transition">SALE</a>
+                <a href="#" class="hover:text-gray-600 transition">ABOUT US</a>
+            </nav>
+
+            <!-- User Actions -->
+            <div class="flex items-center space-x-6 text-lg">
+                <button class="hover:text-gray-600"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="hover:text-gray-600"><i class="fa-regular fa-user"></i></button>
+                <button class="hover:text-gray-600 relative">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="absolute -top-2 -right-2 bg-brandYellow text-black text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. HERO BANNER -->
+    <section class="relative bg-black text-white min-h-[600px] flex items-center overflow-hidden">
+        <!-- Background Overlay/Image -->
+        <div class="absolute inset-0 bg-cover bg-center opacity-60" style="background-image: url('https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1600&q=80');"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+            <span class="text-brandYellow font-bold text-xs uppercase tracking-widest block mb-2">NEW COLLECTION</span>
+            <h1 class="text-5xl md:text-7xl font-black uppercase leading-none tracking-tight mb-4">
+                BUILT DIFFERENT.<br>MADE TO <span class="text-brandYellow">STAND OUT.</span>
+            </h1>
+            <p class="text-gray-300 max-w-md text-base mb-8">
+                Premium streetwear for those who set their own rules.
+            </p>
+            <div class="flex flex-wrap gap-4">
+                <a href="#" class="bg-brandYellow text-black font-bold px-8 py-3 uppercase text-sm hover:bg-yellow-400 transition">SHOP NOW</a>
+                <a href="#" class="border border-white text-white font-bold px-8 py-3 uppercase text-sm hover:bg-white hover:text-black transition">EXPLORE COLLECTION</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. VALUE PROPOSITION BAR -->
+    <section class="border-y border-gray-200 py-6 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center md:text-left">
+            <div class="flex items-center justify-center md:justify-start space-x-3">
+                <i class="fa-solid fa-truck-fast text-xl"></i>
+                <div>
+                    <h4 class="font-bold text-xs uppercase">FREE SHIPPING</h4>
+                    <p class="text-xs text-gray-500">On orders over $100</p>
+                </div>
+            </div>
+            <div class="flex items-center justify-center md:justify-start space-x-3">
+                <i class="fa-solid fa-rotate-left text-xl"></i>
+                <div>
+                    <h4 class="font-bold text-xs uppercase">EASY RETURNS</h4>
+                    <p class="text-xs text-gray-500">30-day returns</p>
+                </div>
+            </div>
+            <div class="flex items-center justify-center md:justify-start space-x-3">
+                <i class="fa-solid fa-shield-halved text-xl"></i>
+                <div>
+                    <h4 class="font-bold text-xs uppercase">SECURE PAYMENT</h4>
+                    <p class="text-xs text-gray-500">100% secure checkout</p>
+                </div>
+            </div>
+            <div class="flex items-center justify-center md:justify-start space-x-3">
+                <i class="fa-solid fa-headset text-xl"></i>
+                <div>
+                    <h4 class="font-bold text-xs uppercase">CUSTOMER SUPPORT</h4>
+                    <p class="text-xs text-gray-500">24/7 support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SHOP BY CATEGORY -->
+    <section class="max-w-7xl mx-auto px-4 py-16">
+        <h2 class="text-2xl font-black text-center uppercase tracking-wider mb-8">SHOP BY CATEGORY</h2>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+            <!-- Hoodie -->
+            <div class="relative group overflow-hidden bg-gray-100 h-80 flex items-end p-4">
+                <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Hoodies">
+                <div class="absolute inset-0 bg-black/40"></div>
+                <div class="relative z-10 text-center w-full text-white">
+                    <i class="fa-solid fa-globe text-2xl mb-1 block"></i>
+                    <h3 class="font-bold uppercase tracking-wider mb-1">HOODIES</h3>
+                    <a href="#" class="text-xs underline font-semibold hover:text-brandYellow">SHOP NOW</a>
+                </div>
+            </div>
+            <!-- T-Shirt -->
+            <div class="relative group overflow-hidden bg-gray-100 h-80 flex items-end p-4">
+                <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="T-Shirts">
+                <div class="absolute inset-0 bg-black/40"></div>
+                <div class="relative z-10 text-center w-full text-white">
+                    <i class="fa-solid fa-shirt text-2xl mb-1 block"></i>
+                    <h3 class="font-bold uppercase tracking-wider mb-1">T-SHIRTS</h3>
+                    <a href="#" class="text-xs underline font-semibold hover:text-brandYellow">SHOP NOW</a>
+                </div>
+            </div>
+            <!-- Pants -->
+            <div class="relative group overflow-hidden bg-gray-100 h-80 flex items-end p-4">
+                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Pants">
+                <div class="absolute inset-0 bg-black/40"></div>
+                <div class="relative z-10 text-center w-full text-white">
+                    <i class="fa-solid fa-person-dots-from-line text-2xl mb-1 block"></i>
+                    <h3 class="font-bold uppercase tracking-wider mb-1">PANTS</h3>
+                    <a href="#" class="text-xs underline font-semibold hover:text-brandYellow">SHOP NOW</a>
+                </div>
+            </div>
+            <!-- Jackets -->
+            <div class="relative group overflow-hidden bg-gray-100 h-80 flex items-end p-4">
+                <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Jackets">
+                <div class="absolute inset-0 bg-black/40"></div>
+                <div class="relative z-10 text-center w-full text-white">
+                    <i class="fa-solid fa-vest text-2xl mb-1 block"></i>
+                    <h3 class="font-bold uppercase tracking-wider mb-1">JACKETS</h3>
+                    <a href="#" class="text-xs underline font-semibold hover:text-brandYellow">SHOP NOW</a>
+                </div>
+            </div>
+            <!-- Accessories -->
+            <div class="relative group overflow-hidden bg-gray-100 h-80 flex items-end p-4">
+                <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Accessories">
+                <div class="absolute inset-0 bg-black/40"></div>
+                <div class="relative z-10 text-center w-full text-white">
+                    <i class="fa-solid fa-hat-cowboy text-2xl mb-1 block"></i>
+                    <h3 class="font-bold uppercase tracking-wider mb-1">ACCESSORIES</h3>
+                    <a href="#" class="text-xs underline font-semibold hover:text-brandYellow">SHOP NOW</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. NEW ARRIVALS -->
+    <section class="max-w-7xl mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-black uppercase tracking-wider">NEW ARRIVALS</h2>
+            <a href="#" class="text-xs font-bold uppercase hover:underline">VIEW ALL <i class="fa-solid fa-arrow-right ml-1"></i></a>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-6 gap-6">
+            <!-- Product 1 -->
+            <div class="group">
+                <div class="relative bg-gray-100 mb-3 aspect-[3/4] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover">
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-black"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <h3 class="font-bold text-xs uppercase tracking-tight">CHAOS TEE - BLACK</h3>
+                <p class="text-xs font-bold text-gray-700 mt-1">$49.00</p>
+                <div class="flex space-x-1 mt-2">
+                    <span class="w-3 h-3 rounded-full bg-black block border border-gray-300"></span>
+                    <span class="w-3 h-3 rounded-full bg-gray-400 block"></span>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="group">
+                <div class="relative bg-gray-100 mb-3 aspect-[3/4] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover">
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-black"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <h3 class="font-bold text-xs uppercase tracking-tight">WASHED HOODIE - CHARCOAL</h3>
+                <p class="text-xs font-bold text-gray-700 mt-1">$89.00</p>
+                <div class="flex space-x-1 mt-2">
+                    <span class="w-3 h-3 rounded-full bg-black block border border-gray-300"></span>
+                    <span class="w-3 h-3 rounded-full bg-gray-400 block"></span>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="group">
+                <div class="relative bg-gray-100 mb-3 aspect-[3/4] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover">
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-black"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <h3 class="font-bold text-xs uppercase tracking-tight">UTILITY CARGO PANTS - BLACK</h3>
+                <p class="text-xs font-bold text-gray-700 mt-1">$99.00</p>
+                <div class="flex space-x-1 mt-2">
+                    <span class="w-3 h-3 rounded-full bg-black block border border-gray-300"></span>
+                    <span class="w-3 h-3 rounded-full bg-gray-300 block"></span>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="group">
+                <div class="relative bg-gray-100 mb-3 aspect-[3/4] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover">
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-black"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <h3 class="font-bold text-xs uppercase tracking-tight">SKETCH TEE - SAND</h3>
+                <p class="text-xs font-bold text-gray-700 mt-1">$45.00</p>
+                <div class="flex space-x-1 mt-2">
+                    <span class="w-3 h-3 rounded-full bg-black block"></span>
+                    <span class="w-3 h-3 rounded-full bg-amber-100 block border border-gray-300"></span>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="group">
+                <div class="relative bg-gray-100 mb-3 aspect-[3/4] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover">
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-black"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <h3 class="font-bold text-xs uppercase tracking-tight">URBANX CAP - BLACK</h3>
+                <p class="text-xs font-bold text-gray-700 mt-1">$45.00</p>
+                <div class="flex space-x-1 mt-2">
+                    <span class="w-3 h-3 rounded-full bg-black block"></span>
+                    <span class="w-3 h-3 rounded-full bg-gray-400 block"></span>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="group">
+                <div class="relative bg-gray-100 mb-3 aspect-[3/4] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover">
+                    <button class="absolute top-2 right-2 text-gray-600 hover:text-black"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <h3 class="font-bold text-xs uppercase tracking-tight">SOCIETY HOODIE - OLIVE</h3>
+                <p class="text-xs font-bold text-gray-700 mt-1">$89.00</p>
+                <div class="flex space-x-1 mt-2">
+                    <span class="w-3 h-3 rounded-full bg-green-900 block"></span>
+                    <span class="w-3 h-3 rounded-full bg-gray-400 block"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. PROMOTIONAL FEATURE GRID -->
+    <section class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Promo 1 -->
+        <div class="relative bg-black text-white h-72 flex items-center p-8 overflow-hidden">
+            <div class="absolute inset-0 bg-cover bg-center opacity-50" style="background-image: url('https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="relative z-10 max-w-xs">
+                <span class="text-xs uppercase font-bold tracking-widest text-gray-300 block mb-1">JOIN THE MOVEMENT</span>
+                <h3 class="text-3xl font-black uppercase mb-6 leading-tight">BE PART OF SOMETHING REAL.</h3>
+                <a href="#" class="bg-brandYellow text-black font-bold px-6 py-2.5 text-xs uppercase hover:bg-yellow-400 inline-block">SHOP NOW</a>
+            </div>
+        </div>
+
+        <!-- Promo 2 -->
+        <div class="relative bg-gray-200 text-black h-72 flex items-center p-8 overflow-hidden">
+            <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="relative z-10 max-w-xs">
+                <span class="text-xs uppercase font-bold tracking-widest text-gray-700 block mb-1">LIMITED DROP</span>
+                <h3 class="text-3xl font-black uppercase mb-6 leading-tight">EXCLUSIVE STYLES. LIMITED QUANTITIES.</h3>
+                <a href="#" class="border border-black font-bold px-6 py-2.5 text-xs uppercase hover:bg-black hover:text-white inline-block transition">EXPLORE NOW</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. NEWSLETTER SECTION -->
+    <section class="bg-black text-white py-8 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <i class="fa-regular fa-envelope text-2xl"></i>
+                <div>
+                    <h4 class="font-black uppercase text-sm tracking-wide">STAY IN THE LOOP</h4>
+                    <p class="text-xs text-gray-400">New drops, exclusive offers, and more.</p>
+                </div>
+            </div>
+            <form class="flex w-full md:w-auto max-w-md">
+                <input type="email" placeholder="Enter your email address" class="bg-black border border-gray-700 px-4 py-2 text-xs w-full md:w-80 text-white focus:outline-none focus:border-white">
+                <button type="submit" class="bg-brandYellow text-black font-bold text-xs uppercase px-6 py-2 hover:bg-yellow-400 transition">SUBSCRIBE</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- 9. FOOTER SECTION -->
+    <footer class="bg-black text-white pt-12 pb-6 border-t border-gray-900 text-xs">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
+            <!-- Col 1: Bio & Social -->
+            <div class="md:col-span-2 pr-6">
+                <a href="#" class="text-2xl font-black italic tracking-tighter block mb-3">URBANX</a>
+                <p class="text-gray-400 mb-4 max-w-sm leading-relaxed">
+                    Streetwear made for the bold. Designed to break the norm. Worn worldwide.
+                </p>
+                <div class="flex space-x-4 text-base text-gray-400">
+                    <a href="#" class="hover:text-white"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="hover:text-white"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#" class="hover:text-white"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" class="hover:text-white"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+
+            <!-- Col 2: Shop Links -->
+            <div>
+                <h5 class="font-bold uppercase tracking-wider mb-3 text-gray-200">SHOP</h5>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="#" class="hover:text-white">All Products</a></li>
+                    <li><a href="#" class="hover:text-white">Hoodies</a></li>
+                    <li><a href="#" class="hover:text-white">T-Shirts</a></li>
+                    <li><a href="#" class="hover:text-white">Pants</a></li>
+                    <li><a href="#" class="hover:text-white">Jackets</a></li>
+                    <li><a href="#" class="hover:text-white">Accessories</a></li>
+                    <li><a href="#" class="hover:text-white">Sale</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Customer Care Links -->
+            <div>
+                <h5 class="font-bold uppercase tracking-wider mb-3 text-gray-200">CUSTOMER CARE</h5>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="#" class="hover:text-white">Contact Us</a></li>
+                    <li><a href="#" class="hover:text-white">Shipping & Delivery</a></li>
+                    <li><a href="#" class="hover:text-white">Returns & Exchanges</a></li>
+                    <li><a href="#" class="hover:text-white">Size Guide</a></li>
+                    <li><a href="#" class="hover:text-white">Track Order</a></li>
+                    <li><a href="#" class="hover:text-white">FAQ</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 4: Company Links -->
+            <div>
+                <h5 class="font-bold uppercase tracking-wider mb-3 text-gray-200">COMPANY</h5>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="#" class="hover:text-white">About Us</a></li>
+                    <li><a href="#" class="hover:text-white">Our Story</a></li>
+                    <li><a href="#" class="hover:text-white">Sustainability</a></li>
+                    <li><a href="#" class="hover:text-white">Careers</a></li>
+                    <li><a href="#" class="hover:text-white">Wholesale</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Copyright & Payments -->
+        <div class="max-w-7xl mx-auto px-4 pt-6 border-t border-gray-900 flex flex-col md:flex-row justify-between items-center text-gray-500 space-y-4 md:space-y-0">
+            <p>© 2024 URBANX. All rights reserved.</p>
+            <div class="flex items-center space-x-6">
+                <span><i class="fa-solid fa-globe mr-1"></i> EN / USD</span>
+                <div class="flex space-x-2 text-lg text-gray-300">
+                    <i class="fa-brands fa-cc-visa"></i>
+                    <i class="fa-brands fa-cc-mastercard"></i>
+                    <i class="fa-brands fa-cc-paypal"></i>
+                    <i class="fa-brands fa-cc-apple-pay"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

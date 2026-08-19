@@ -1,9 +1,9 @@
-import { BestSellersRow } from "@/components/home/BestSellersRow";
-import { CategoryStrip } from "@/components/home/CategoryStrip";
-import { FeaturedRow } from "@/components/home/FeaturedRow";
 import { Hero } from "@/components/home/Hero";
-import { NewArrivalsRow } from "@/components/home/NewArrivalsRow";
 import { ValueProps } from "@/components/home/ValueProps";
+import { CategoryStrip } from "@/components/home/CategoryStrip";
+import { NewArrivalsRow } from "@/components/home/NewArrivalsRow";
+import { PromoStrip } from "@/components/home/PromoStrip";
+import { NewsletterBand } from "@/components/layout/NewsletterBand";
 
 export const dynamic = "force-dynamic";
 
@@ -13,9 +13,9 @@ export default function Home() {
       <Hero />
       <ValueProps />
       <CategoryStrip />
-      <BestSellersRow />
       <NewArrivalsRow />
-      <FeaturedRow />
+      <PromoStrip />
+      <NewsletterBand />
     </>
   );
 }
