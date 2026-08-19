@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useCartStore, selectCount, selectSubtotal } from "@/store/cart-store";
+import { useUiStore } from "@/store/ui-store";
 import { content } from "@/lib/content";
 import { formatINR } from "@/lib/format";
 
@@ -19,6 +20,7 @@ export function CartSummary({
   const subtotal = useCartStore(selectSubtotal);
   const remaining = content.freeShippingThreshold - subtotal;
   const unlocked = remaining <= 0;
+  const closeCart = useUiStore((s) => s.closeCart);
 
   const total = Math.max(0, subtotal);
 
@@ -104,12 +106,14 @@ export function CartSummary({
       <div className="space-y-2 pt-1">
         <Link
           href="/cart"
+          onClick={closeCart}
           className="flex h-11 w-full items-center justify-center rounded-md bg-gradient-to-b from-accent to-[#c8e430] text-[11px] font-bold uppercase tracking-wide text-accent-foreground shadow-[0_1px_2px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.25)] transition-all hover:from-accent-hover hover:to-[#e6c52e] hover:shadow-[0_2px_8px_rgba(0,0,0,0.15)]"
         >
           View cart
         </Link>
         <Link
           href="/products"
+          onClick={closeCart}
           className="flex h-10 w-full items-center justify-center rounded-md border border-border text-[11px] font-bold uppercase tracking-wide text-ink transition-colors hover:bg-canvas"
         >
           Continue shopping
