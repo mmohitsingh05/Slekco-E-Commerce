@@ -27,10 +27,15 @@ export function PromoStrip() {
                   block.tone === "dark" ? "opacity-50" : "opacity-40"
                 }`}
               />
+              <div className={`absolute inset-0 ${
+                block.tone === "dark"
+                  ? "bg-gradient-to-r from-brand-dark/90 via-brand-dark/50 to-transparent"
+                  : "bg-gradient-to-r from-white/80 via-white/40 to-transparent"
+              }`} />
               <div className="relative z-10 max-w-xs">
                 <span
                   className={`mb-1 block text-xs font-bold uppercase tracking-widest ${
-                    block.tone === "dark" ? "text-gray-300" : "text-gray-700"
+                    block.tone === "dark" ? "text-white/60" : "text-ink-faint"
                   }`}
                 >
                   {block.eyebrow}

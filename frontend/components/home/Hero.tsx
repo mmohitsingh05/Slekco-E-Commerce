@@ -20,6 +20,7 @@ export function Hero() {
           className="object-cover opacity-60 transition-transform duration-[2s] ease-out motion-reduce:transition-none"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/60 via-transparent to-brand-dark/30" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">

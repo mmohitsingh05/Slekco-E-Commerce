@@ -12,8 +12,9 @@ const icons: Record<TrustIcon, typeof TruckIcon> = {
 
 export function ValueProps() {
   return (
-    <section aria-label="Why shop with us" className="border-y border-border bg-surface">
-      <Container className="grid grid-cols-2 gap-4 py-5 sm:gap-6 sm:py-6 md:grid-cols-4">
+    <section aria-label="Why shop with us" className="relative border-y border-border overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-r from-surface via-gray-50 to-surface" />
+      <Container className="relative grid grid-cols-2 gap-4 py-5 sm:gap-6 sm:py-6 md:grid-cols-4">
         {content.trust.map((value) => {
           const Icon = icons[value.icon];
           return (

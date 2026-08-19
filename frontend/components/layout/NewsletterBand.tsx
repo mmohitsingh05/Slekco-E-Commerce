@@ -19,8 +19,9 @@ export function NewsletterBand() {
   }
 
   return (
-    <section className="border-t border-border bg-surface py-10">
-      <Container className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
+    <section className="relative overflow-hidden border-t border-border py-10">
+      <div className="absolute inset-0 bg-gradient-to-r from-gray-50 via-surface to-gray-50" />
+      <Container className="relative flex flex-col items-center gap-6 md:flex-row md:justify-between">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-dark text-white">
             <MailIcon className="h-5 w-5" />
@@ -66,7 +67,7 @@ export function NewsletterBand() {
                 }}
                 placeholder={content.newsletter.placeholder}
                 aria-invalid={status === "error"}
-                className="min-w-0 flex-1 border border-r-0 border-border bg-canvas px-4 py-2.5 text-xs text-ink placeholder:text-ink-faint focus:border-ink focus:outline-none"
+                className="min-w-0 flex-1 border border-r-0 border-border bg-white px-4 py-2.5 text-xs text-ink placeholder:text-ink-faint focus:border-ink focus:outline-none"
               />
               <button
                 type="submit"

@@ -21,7 +21,7 @@ export function EmptyCart() {
       <Link
         href="/products"
         onClick={closeCart}
-        className="mt-2 inline-flex items-center rounded-md bg-brand-yellow px-6 py-3 text-body-sm font-bold uppercase tracking-wide text-brand-dark transition-colors hover:bg-brand-yellow-hover"
+        className="mt-2 inline-flex items-center rounded-md bg-gradient-to-b from-brand-yellow to-[#c8e430] px-6 py-3 text-body-sm font-bold uppercase tracking-wide text-brand-dark shadow-[0_1px_2px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.25)] transition-all hover:from-brand-yellow-hover hover:to-[#e6c52e] hover:shadow-[0_2px_8px_rgba(0,0,0,0.15)]"
       >
         Continue shopping
       </Link>

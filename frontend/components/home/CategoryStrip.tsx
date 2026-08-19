@@ -34,7 +34,7 @@ export async function CategoryStrip() {
               <Reveal key={category._id} delay={index * 80}>
                 <Link
                   href={`/categories/${category.slug}`}
-                  className="group relative flex h-80 items-end overflow-hidden bg-gray-100 p-4"
+                  className="group relative flex h-80 items-end overflow-hidden bg-surface p-4"
                   aria-label={category.name}
                 >
                   <Image
@@ -44,7 +44,7 @@ export async function CategoryStrip() {
                     sizes="(min-width: 1024px) 20vw, (min-width: 768px) 33vw, 50vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-black/40" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                   <div className="relative z-10 w-full text-center text-white">
                     <Icon className="mb-1 block h-6 w-6 mx-auto" />
                     <h3 className="mb-1 text-sm font-bold uppercase tracking-wider">

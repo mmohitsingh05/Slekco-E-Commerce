@@ -35,7 +35,7 @@ export function AddToCartButton({
       type="button"
       onClick={handleClick}
       disabled={disabled}
-      className={`flex items-center justify-center rounded-md bg-accent text-[11px] font-bold uppercase tracking-wide text-accent-foreground transition-colors duration-fast ease-out hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-50 ${sizeClass}`}
+      className={`flex items-center justify-center rounded-md bg-gradient-to-b from-accent to-[#c8e430] text-[11px] font-bold uppercase tracking-wide text-accent-foreground shadow-[0_1px_2px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.25)] transition-all duration-fast ease-out hover:from-accent-hover hover:to-[#e6c52e] hover:shadow-[0_2px_8px_rgba(0,0,0,0.15)] disabled:cursor-not-allowed disabled:opacity-50 ${sizeClass}`}
     >
       {added ? "Added ✓" : disabled ? "Out of stock" : label}
     </button>

@@ -66,7 +66,7 @@ export function CartSummary({
             type="button"
             onClick={onCheckout}
             disabled={count === 0}
-            className="h-12 w-full bg-accent text-accent-foreground font-black uppercase tracking-wide transition-colors hover:bg-accent-hover disabled:opacity-50"
+            className="h-12 w-full rounded-md bg-gradient-to-b from-accent to-[#c8e430] text-accent-foreground font-black uppercase tracking-wide shadow-[0_1px_2px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.25)] transition-all hover:from-accent-hover hover:to-[#e6c52e] hover:shadow-[0_2px_8px_rgba(0,0,0,0.15)] disabled:opacity-50"
           >
             Proceed to checkout
           </button>
@@ -104,7 +104,7 @@ export function CartSummary({
       <div className="space-y-2 pt-1">
         <Link
           href="/cart"
-          className="flex h-11 w-full items-center justify-center rounded-md bg-accent text-[11px] font-bold uppercase tracking-wide text-accent-foreground transition-colors hover:bg-accent-hover"
+          className="flex h-11 w-full items-center justify-center rounded-md bg-gradient-to-b from-accent to-[#c8e430] text-[11px] font-bold uppercase tracking-wide text-accent-foreground shadow-[0_1px_2px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.25)] transition-all hover:from-accent-hover hover:to-[#e6c52e] hover:shadow-[0_2px_8px_rgba(0,0,0,0.15)]"
         >
           View cart
         </Link>

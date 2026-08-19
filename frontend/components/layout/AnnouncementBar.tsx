@@ -7,8 +7,9 @@ export function AnnouncementBar() {
   const zones = content.announcementZones;
 
   return (
-    <div className="border-b border-white/10 bg-brand-dark text-white">
-      <Container className="flex flex-col items-center gap-1 py-2 text-xs md:flex-row md:justify-between md:gap-0 md:space-y-0">
+    <div className="relative overflow-hidden border-b border-white/10 bg-brand-dark text-white">
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.04] to-transparent" />
+      <Container className="relative flex flex-col items-center gap-1 py-2 text-xs md:flex-row md:justify-between md:gap-0 md:space-y-0">
         {/* Left */}
         <div className="flex items-center space-x-2">
           <TruckIcon className="h-3.5 w-3.5" />

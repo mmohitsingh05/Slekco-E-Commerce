@@ -10,7 +10,7 @@ export function ProductCard({ product }: { product: ProductListItem }) {
       className="group"
       aria-label={product.name}
     >
-      <div className="relative mb-3 aspect-[3/4] overflow-hidden bg-gray-100">
+      <div className="relative mb-3 aspect-[3/4] overflow-hidden bg-surface">
         {product.image ? (
           <Image
             src={product.image}
@@ -22,14 +22,15 @@ export function ProductCard({ product }: { product: ProductListItem }) {
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
-          <div className="h-full w-full bg-gray-100" aria-hidden="true" />
+          <div className="h-full w-full bg-surface" aria-hidden="true" />
         )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
         <span className="absolute right-2 top-2">
           <WishlistButton />
         </span>
       </div>
-      <h3 className="text-xs font-bold uppercase tracking-tight">{product.name}</h3>
-      <p className="mt-1 text-xs font-bold text-gray-700">
+      <h3 className="text-xs font-bold uppercase tracking-tight text-ink">{product.name}</h3>
+      <p className="mt-1 text-xs font-bold text-ink-soft">
         ₹{product.price.toLocaleString("en-IN")}
       </p>
     </Link>
