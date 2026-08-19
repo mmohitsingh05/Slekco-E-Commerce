@@ -130,7 +130,7 @@ export function CartItem({
           </div>
           <div className="flex items-center justify-between gap-2 pt-2">
             <div
-              className="inline-flex h-9 items-center rounded-md border border-border bg-surface"
+              className="inline-flex h-8 items-center rounded border border-border"
               role="group"
               aria-label={`Quantity of ${item.name}`}
             >
@@ -139,22 +139,22 @@ export function CartItem({
                 onClick={() => setQty(productId, item.qty - 1)}
                 disabled={item.qty <= 1}
                 aria-label="Decrease quantity"
-                className="flex h-full w-9 items-center justify-center text-ink transition-colors hover:bg-canvas disabled:opacity-40"
+                className="flex h-full w-8 items-center justify-center text-xs font-bold text-ink transition-colors hover:bg-canvas disabled:opacity-40"
               >
                 −
               </button>
-              <span className="w-9 text-center text-body-sm font-medium text-ink">{item.qty}</span>
+              <span className="w-7 text-center text-xs font-bold text-ink">{item.qty}</span>
               <button
                 type="button"
                 onClick={() => setQty(productId, item.qty + 1)}
                 disabled={item.qty >= 99}
                 aria-label="Increase quantity"
-                className="flex h-full w-9 items-center justify-center text-ink transition-colors hover:bg-canvas disabled:opacity-40"
+                className="flex h-full w-8 items-center justify-center text-xs font-bold text-ink transition-colors hover:bg-canvas disabled:opacity-40"
               >
                 +
               </button>
             </div>
-            <p className="text-xs font-bold text-ink whitespace-nowrap">{formatINR(item.price * item.qty)}</p>
+            <p className="text-xs font-bold text-ink min-w-0 text-right">{formatINR(item.price * item.qty)}</p>
           </div>
         </div>
       </div>
