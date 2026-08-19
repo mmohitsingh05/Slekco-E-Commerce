@@ -16,40 +16,42 @@ export default function CartPage() {
   const itemIds = Object.keys(items);
 
   return (
-    <Container className="py-8 md:py-12">
+    <Container className="px-4 py-6 sm:px-6 sm:py-8 md:py-12">
       <div className="mb-4">
-        <h1 className="text-3xl font-black uppercase tracking-tight text-ink">
+        <h1 className="text-2xl font-black uppercase tracking-tight text-ink sm:text-3xl">
           Your Bag{count > 0 ? ` (${count})` : ""}
         </h1>
       </div>
 
       {count === 0 ? (
-        <div className="border border-border bg-surface px-6 py-12">
+        <div className="border border-border bg-surface px-4 py-8 sm:px-6 sm:py-12">
           <EmptyCart />
         </div>
       ) : (
-        <div className="grid gap-10 xl:grid-cols-[minmax(0,1fr)_400px]">
+        <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_400px] xl:gap-10">
           {/* Left: Items */}
           <div className="min-w-0">
-            <FreeShippingProgress subtotal={subtotal} />
+            <div className="rounded-md border border-border bg-surface p-3 sm:p-4">
+              <FreeShippingProgress subtotal={subtotal} />
+            </div>
 
-            {/* Table header */}
+            {/* Table header — hidden on mobile */}
             <div className="hidden sm:grid grid-cols-12 gap-4 mt-6 pb-3 border-b border-border text-xs font-bold uppercase text-ink-faint">
               <div className="col-span-6">Product</div>
               <div className="col-span-3 text-center">Quantity</div>
               <div className="col-span-3 text-right">Total</div>
             </div>
 
-            <ul>
+            <ul className="divide-y divide-border sm:divide-y-0">
               {itemIds.map((productId) => (
                 <CartItem key={productId} productId={productId} />
               ))}
             </ul>
 
-            <div className="pt-2 mt-2">
+            <div className="pt-4 mt-4 border-t border-border sm:border-t-0 sm:mt-2 sm:pt-2">
               <Link
                 href="/products"
-                className="text-xs font-bold uppercase underline transition-colors hover:text-ink-soft"
+                className="inline-flex items-center gap-1 text-xs font-bold uppercase transition-colors hover:text-ink-soft"
               >
                 ← Continue shopping
               </Link>
@@ -58,7 +60,9 @@ export default function CartPage() {
 
           {/* Right: Order Summary */}
           <aside className="min-w-0 xl:sticky xl:top-24 xl:self-start">
-            <CartSummary variant="page" showViewCart={false} />
+            <div className="rounded-md border border-border bg-surface p-4 sm:p-6">
+              <CartSummary variant="page" showViewCart={false} />
+            </div>
           </aside>
         </div>
       )}
