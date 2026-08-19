@@ -14,7 +14,7 @@ export function ProductPurchasePanel({
   const [qty, setQty] = useState(1);
 
   return (
-    <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+    <div className="flex flex-col gap-3">
       <QuantityStepper qty={qty} onChange={setQty} />
       <AddToCartButton product={product} qty={qty} disabled={outOfStock} />
     </div>

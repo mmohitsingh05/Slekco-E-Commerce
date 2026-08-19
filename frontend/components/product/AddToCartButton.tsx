@@ -28,7 +28,7 @@ export function AddToCartButton({
     window.setTimeout(() => setAdded(false), 1600);
   };
 
-  const sizeClass = size === "sm" ? "h-8 min-w-0 px-3" : "h-11 min-w-40 px-6";
+  const sizeClass = size === "sm" ? "h-8 min-w-0 px-3" : "h-11 w-full min-w-0 px-6 sm:min-w-40";
 
   return (
     <button

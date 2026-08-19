@@ -11,7 +11,7 @@ export function QuantityStepper({
 }) {
   return (
     <div
-      className="inline-flex h-11 items-center rounded-md border border-border bg-surface"
+      className="inline-flex h-10 items-center rounded-md border border-border sm:h-11"
       role="group"
       aria-label="Quantity"
     >
@@ -20,11 +20,11 @@ export function QuantityStepper({
         onClick={() => onChange(Math.max(1, qty - 1))}
         disabled={qty <= 1}
         aria-label="Decrease quantity"
-        className="flex h-full w-10 items-center justify-center text-ink transition-colors hover:bg-canvas disabled:opacity-40"
+        className="flex h-full w-9 items-center justify-center text-ink transition-colors hover:bg-canvas disabled:opacity-40 sm:w-10"
       >
         −
       </button>
-      <span className="w-10 text-center text-body font-medium text-ink" aria-live="polite">
+      <span className="w-9 text-center text-sm font-medium text-ink sm:w-10 sm:text-body" aria-live="polite">
         {qty}
       </span>
       <button
@@ -32,7 +32,7 @@ export function QuantityStepper({
         onClick={() => onChange(Math.min(max, qty + 1))}
         disabled={qty >= max}
         aria-label="Increase quantity"
-        className="flex h-full w-10 items-center justify-center text-ink transition-colors hover:bg-canvas disabled:opacity-40"
+        className="flex h-full w-9 items-center justify-center text-ink transition-colors hover:bg-canvas disabled:opacity-40 sm:w-10"
       >
         +
       </button>
